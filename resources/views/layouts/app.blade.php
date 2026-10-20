@@ -7,20 +7,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="The People's Bank of Zanzibar (PBZ)">
-    <meta name="description" content="{{ $metaDescription ?? site_name() . ' - ' . site_tagline() }}">
-    <!-- ======== Page title ============ -->
     @php
-        $cleanPageTitle = $pageTitle ?? null;
-        if ($cleanPageTitle && str_contains($cleanPageTitle, 'Eduex')) {
-            $cleanPageTitle = str_replace('Eduex', 'PBZ Learning Academy', $cleanPageTitle);
-        }
         $siteTitle = site_name();
-        if (str_contains($siteTitle, 'Eduex')) {
-            $siteTitle = str_replace('Eduex', "People's Bank of Zanzibar (PBZ) LMS", $siteTitle);
+        if (empty($siteTitle) || str_contains($siteTitle, 'Eduex') || str_contains($siteTitle, 'Laravel')) {
+            $siteTitle = "People's Bank of Zanzibar (PBZ) LMS";
         }
+        $siteTag = site_tagline();
+
+        $cleanPageTitle = $pageTitle ?? null;
+        if ($cleanPageTitle && (str_contains($cleanPageTitle, 'Eduex') || str_contains($cleanPageTitle, 'Laravel'))) {
+            $cleanPageTitle = str_replace(['Eduex', 'Laravel'], 'PBZ Learning Academy', $cleanPageTitle);
+        }
+
+        $computedTitle = (!empty($cleanPageTitle) && $cleanPageTitle !== $siteTitle) 
+            ? $cleanPageTitle . ' | ' . $siteTitle 
+            : $siteTitle . ' - ' . $siteTag;
+
+        $cleanDescription = $metaDescription ?? null;
+        if (empty($cleanDescription) || str_contains($cleanDescription, 'Eduex') || str_contains($cleanDescription, 'Laravel')) {
+            $cleanDescription = "Official People's Bank of Zanzibar (PBZ) Digital Learning Academy. Bank of Tanzania statutory certifications, AML/CFT compliance, and Islamic banking curricula.";
+        }
+
+        $shareImage = asset('assets/front/img/logo/pbz-logo.png');
     @endphp
-    <title>{{ (!empty($cleanPageTitle) && $cleanPageTitle !== $siteTitle) ? $cleanPageTitle . ' | ' . $siteTitle : $siteTitle . ' - ' . site_tagline() }}</title>
+
+    <meta name="description" content="{{ $cleanDescription }}">
+    <title>{{ $computedTitle }}</title>
+
+    <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="People's Bank of Zanzibar (PBZ) LMS">
+    <meta property="og:title" content="{{ $computedTitle }}">
+    <meta property="og:description" content="{{ $cleanDescription }}">
+    <meta property="og:image" content="{{ $shareImage }}">
+    <meta property="og:image:secure_url" content="{{ $shareImage }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="315">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $computedTitle }}">
+    <meta name="twitter:description" content="{{ $cleanDescription }}">
+    <meta name="twitter:image" content="{{ $shareImage }}">
 
     @stack('meta')
 

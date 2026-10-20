@@ -4,10 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="The People's Bank of Zanzibar (PBZ)">
-    <meta name="description" content="{{ site_name() }} - Sovereign Banking Learning Academy">
+    @php
+        $siteTitle = site_name();
+        if (empty($siteTitle) || str_contains($siteTitle, 'Eduex') || str_contains($siteTitle, 'Laravel')) {
+            $siteTitle = "People's Bank of Zanzibar (PBZ) LMS";
+        }
+        $siteTag = site_tagline();
+        $pageTitle = trim($__env->yieldContent('title', 'Sign In'));
+        $fullTitle = (!empty($pageTitle) && $pageTitle !== $siteTitle) ? $pageTitle . ' | ' . $siteTitle : $siteTitle . ' - ' . $siteTag;
+        $authDesc = "Official People's Bank of Zanzibar (PBZ) Digital Learning Academy. Bank of Tanzania statutory certifications, AML/CFT compliance, and Islamic banking curricula.";
+        $shareImage = asset('assets/front/img/logo/pbz-logo.png');
+    @endphp
 
-    <title>@yield('title', 'Authentication') | {{ site_name() }}</title>
+    <title>{{ $fullTitle }}</title>
+    <meta name="description" content="{{ $authDesc }}">
+
+    <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="People's Bank of Zanzibar (PBZ) LMS">
+    <meta property="og:title" content="{{ $fullTitle }}">
+    <meta property="og:description" content="{{ $authDesc }}">
+    <meta property="og:image" content="{{ $shareImage }}">
+    <meta property="og:image:secure_url" content="{{ $shareImage }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="315">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $fullTitle }}">
+    <meta name="twitter:description" content="{{ $authDesc }}">
+    <meta name="twitter:image" content="{{ $shareImage }}">
 
     @php
         $favicon = branding_asset(['favicon_path', 'logos.favicon', 'favicon'], 'assets/front/img/favicon.svg');

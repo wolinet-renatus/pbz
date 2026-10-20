@@ -13,32 +13,32 @@ class FrontendSettingSeeder extends Seeder
     public function run(): void
     {
         FrontendSetting::setValue('footer.branding', [
-            'about_text' => 'Eduex connects learners with expert instructors through engaging online and in-person experiences.',
-            'tagline' => 'Inspiring learning for every stage of life.',
-            'copyright' => '© ' . date('Y') . ' Eduex. All rights reserved.',
+            'about_text' => 'The People\'s Bank of Zanzibar (PBZ) Learning Management System delivers accredited banking certifications, BOT statutory compliance, AML/CFT training, and Islamic finance curricula.',
+            'tagline' => 'Bank of Tanzania Certified Digital Academy',
+            'copyright' => '© ' . date('Y') . ' The People\'s Bank of Zanzibar (PBZ). All rights reserved.',
         ]);
 
         FrontendSetting::setValue('footer.contact', [
-            'email' => 'hello@eduex.com',
-            'phone' => '+1 (800) 555-1234',
-            'address' => '371 7th Ave, New York, NY 10001',
-            'hours' => 'Mon - Fri: 9:00am - 6:00pm ET',
+            'email' => 'lms@pbzbank.co.tz',
+            'phone' => '+255 24 223 1118',
+            'address' => 'Mizingani Road, P.O. Box 1173, Zanzibar, Tanzania',
+            'hours' => 'Mon - Fri: 8:30am - 4:30pm EAT',
         ]);
 
         FrontendSetting::setValue('footer.social_links', [
             [
                 'label' => 'Follow on Facebook',
-                'url' => 'https://facebook.com/eduex',
+                'url' => 'https://facebook.com/pbzbank',
                 'icon' => 'fab fa-facebook-f',
             ],
             [
                 'label' => 'Follow on Twitter',
-                'url' => 'https://twitter.com/eduex',
+                'url' => 'https://twitter.com/pbzbank',
                 'icon' => 'fab fa-twitter',
             ],
             [
                 'label' => 'Connect on LinkedIn',
-                'url' => 'https://linkedin.com/company/eduex',
+                'url' => 'https://linkedin.com/company/pbzbank',
                 'icon' => 'fab fa-linkedin-in',
             ],
         ]);
@@ -46,70 +46,70 @@ class FrontendSettingSeeder extends Seeder
         FrontendSetting::setValue('pages.faq.items', [
             [
                 'question' => 'What courses do you offer?',
-                'answer' => '<p>We provide a diverse catalog covering technology, design, business, and creative skills. Each course is curated and taught by experienced instructors.</p>',
+                'answer' => '<p>We provide a comprehensive catalog covering Bank of Tanzania (BOT) statutory compliance, AML/CFT prevention, Amana Islamic Banking, retail banking operations, credit appraisal, and digital financial systems.</p>',
             ],
             [
                 'question' => 'Can I learn at my own pace?',
-                'answer' => '<p>Yes. All on-demand courses are self-paced so you can study whenever it fits your schedule while keeping track of your progress.</p>',
+                'answer' => '<p>Yes. All on-demand courses are self-paced with micro-learning modules so banking staff can study while managing daily branch duties.</p>',
             ],
             [
                 'question' => 'Do you offer certificates of completion?',
-                'answer' => '<p>Every paid course includes a downloadable certificate demonstrating the skills you have acquired once you pass the final assessment.</p>',
+                'answer' => '<p>Every accredited course awards an official, verifiable PBZ Digital Certificate upon successfully passing the compliance assessment.</p>',
             ],
             [
                 'question' => 'How can I get support if I have questions?',
-                'answer' => '<p>You can reach our support team anytime via email or live chat. Instructors and peers are also available in the course discussion boards.</p>',
+                'answer' => '<p>You can reach our learning operations team anytime via email or internal portal tickets. Senior compliance officers and faculty mentors are also available for consultation.</p>',
             ],
         ]);
 
         FrontendSetting::setValue('pages.seo.meta', [
             'home' => [
-                'title' => 'Eduex',
-                'description' => 'Join Eduex to access premium online courses, expert instructors, and immersive learning experiences tailored to every stage of your education.',
+                'title' => 'PBZ Learning Academy',
+                'description' => 'Official People\'s Bank of Zanzibar (PBZ) Digital Learning Academy. Bank of Tanzania statutory certifications, AML/CFT compliance, and Islamic banking curricula.',
             ],
             'courses' => [
-                'title' => 'Browse Courses',
-                'description' => 'Explore hundreds of curated courses covering technology, design, business, marketing, and more. Find the perfect program to grow your skills.',
+                'title' => 'Banking Certifications & Courses',
+                'description' => 'Explore PBZ accredited banking programs covering central bank regulations, risk management, trade finance, customer service, and digital banking.',
             ],
             'faq' => [
                 'title' => 'Frequently Asked Questions',
-                'description' => 'Find answers to popular questions about Eduex courses, certifications, instructors, pricing, and support.',
+                'description' => 'Find answers to popular questions about PBZ banking curricula, BOT certifications, exams, grading, and faculty support.',
             ],
             'about' => [
-                'title' => 'About Eduex',
-                'description' => 'Discover Eduex’s mission, values, and the people behind our platform committed to transforming education for everyone.',
+                'title' => 'About PBZ Academy',
+                'description' => 'Learn about People\'s Bank of Zanzibar (PBZ) mission, banking workforce development, and BOT compliance standards.',
             ],
             'events' => [
-                'title' => 'Upcoming Events & Workshops',
-                'description' => 'Explore upcoming Eduex events, workshops, and live sessions designed to accelerate your learning journey.',
+                'title' => 'Upcoming Compliance Seminars & Workshops',
+                'description' => 'Explore upcoming PBZ banking webinars, regulatory roundtables, and live workshops.',
             ],
             'instructors' => [
-                'title' => 'Meet Our Instructors',
-                'description' => 'Meet our expert instructors who bring real-world expertise and passion to every course. Find the perfect mentor for your learning journey.',
+                'title' => 'PBZ Certified Faculty & Mentors',
+                'description' => 'Meet experienced senior bankers, risk specialists, and regulatory compliance mentors at PBZ.',
             ],
             'contact' => [
-                'title' => 'Contact Us',
-                'description' => 'Have questions? Contact our support team for assistance. We’re here to help you every step of the way.',
+                'title' => 'Contact PBZ Academy Support',
+                'description' => 'Need assistance with course enrollment or certification? Contact PBZ Learning Academy support desk.',
             ],
             'blog' => [
-                'title' => 'Read Our Blog',
-                'description' => 'Stay informed with our latest blog posts covering industry trends, learning strategies, and success stories. Get expert tips and insights for your educational journey.',
+                'title' => 'Banking Insights & Regulatory Bulletins',
+                'description' => 'Stay informed with PBZ banking articles, Bank of Tanzania regulatory updates, and modern financial sector insights.',
             ],
             'testimonials' => [
-                'title' => 'Student Testimonials',
-                'description' => 'Hear from learners who have transformed their skills through Eduex courses and mentorship.',
+                'title' => 'Banker Testimonials',
+                'description' => 'Read reviews and career milestones from certified PBZ staff, branch managers, and banking trainees.',
             ],
             'privacy-policy' => [
                 'title' => 'Privacy Policy',
-                'description' => 'Read our privacy policy to understand how we collect, use, and protect your personal information when you use Eduex.',
+                'description' => 'Learn how People\'s Bank of Zanzibar safeguards trainee data and banking records under statutory confidentiality standards.',
             ],
             'terms-and-conditions' => [
                 'title' => 'Terms of Service',
-                'description' => 'Review our terms of service to learn about your rights and responsibilities when using Eduex services.',
+                'description' => 'Review the official terms of service and code of ethics for the PBZ Learning Management System.',
             ],
             'gdpr-compliance' => [
-                'title' => 'GDPR Compliance',
-                'description' => 'Learn about how Eduex complies with GDPR regulations to protect your privacy and data security.',
+                'title' => 'Data Protection & Compliance',
+                'description' => 'Information on PBZ data protection practices adhering to Tanzanian banking laws and international security standards.',
             ],
         ]);
 
@@ -153,120 +153,120 @@ class FrontendSettingSeeder extends Seeder
                 'icon' => 'fa-light fa-envelope',
                 'label' => 'Send us an email',
                 'type' => 'email',
-                'value' => 'hello@eduex.com',
+                'value' => 'lms@pbzbank.co.tz',
             ],
             [
                 'icon' => 'fa-light fa-location-dot',
-                'label' => 'Visit our office',
+                'label' => 'Visit our academy',
                 'type' => 'address',
-                'value' => '371 7th Ave, New York, NY 10001',
+                'value' => 'Mizingani Road, P.O. Box 1173, Zanzibar, Tanzania',
             ],
             [
                 'icon' => 'fa-light fa-clock',
                 'label' => 'Support hours',
                 'type' => 'hours',
-                'value' => 'Mon - Fri: 9:00am - 6:00pm ET',
+                'value' => 'Mon - Fri: 8:30am - 4:30pm EAT',
             ],
         ]);
 
         FrontendSetting::setValue('pages.contact.form', [
             'heading' => 'Send us a message',
-            'description' => 'Let us know how we can help. We usually respond within one business day.',
+            'description' => 'Let us know how we can help with your learning journey. Our academy support team responds within one business day.',
             'submit_label' => 'Send Message',
-            'success_message' => 'Thank you for contacting Eduex. We will reach out shortly!',
-            'subject_prefix' => '[Eduex Contact]',
+            'success_message' => 'Thank you for contacting PBZ Academy. We will reach out shortly!',
+            'subject_prefix' => '[PBZ Academy Support]',
         ]);
 
         FrontendSetting::setValue('pages.contact.map', [
-            'embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6678.7619084840835!2d144.9618311901502!3d-37.81450084255415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4758afc1d%3A0x3119cc820fdfc62e!2sEnvato!5e0!3m2!1sen!2sbd!4v1641984054261!5m2!1sen!2sbd',
-            'caption' => 'Our headquarters is located in the heart of New York City.',
+            'embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.062828551381!2d39.1878342!3d-6.1600155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185cd05a396b27db%3A0xb36d80ff632e85ab!2sPeople%27s%20Bank%20of%20Zanzibar!5e0!3m2!1sen!2stz!4v1700000000000!5m2!1sen!2stz',
+            'caption' => 'PBZ Head Office, Mizingani Road, Stone Town, Zanzibar, Tanzania.',
         ]);
 
         FrontendSetting::setValue('pages.home.hero', [
-            'preheading' => 'Learn without limits',
-            'heading' => 'Skill up with courses designed by experts',
-            'description' => 'Build a learning plan that fits your day-to-day life. Explore immersive classes, guided projects, and live sessions to keep your skills sharp.',
+            'preheading' => 'Sovereign Banking Learning Platform',
+            'heading' => 'Master Central Bank Compliance & Digital Banking',
+            'description' => 'Official corporate learning academy of The People\'s Bank of Zanzibar. Bank of Tanzania statutory certifications, AML/CFT risk management, and Amana Islamic Banking.',
             'cta_label' => 'Explore Courses',
             'cta_url' => route('courses'),
         ]);
 
         FrontendSetting::setValue('pages.home.testimonial', [
-            'title' => 'Students Reviews',
-            'subtitle' => 'What learners say about our platform',
+            'title' => 'Trainee Reviews',
+            'subtitle' => 'What PBZ banking staff say about the academy',
             'cta_label' => 'All Testimonials',
             'cta_url' => route('testimonials.index'),
         ]);
 
         FrontendSetting::setValue('pages.home.blog', [
-            'title' => 'Our Blogs',
-            'subtitle' => 'Insights from instructors & industry experts',
-            'description' => 'Stay updated with the latest learning guides, course launches, and trends from across the Eduex community.',
+            'title' => 'Banking Bulletins',
+            'subtitle' => 'Insights from PBZ compliance officers & industry specialists',
+            'description' => 'Stay updated with regulatory circulars, course milestones, and financial trends from across the PBZ banking network.',
         ]);
 
         FrontendSetting::setValue('pages.home.about', [
-            'subheading' => 'About Us',
-            'heading' => 'Transforming Learning Into Lasting Impact',
-            'description' => 'We partner with expert instructors to create immersive learning pathways that deliver measurable results for students and teams around the globe.',
-            'cta_label' => 'Explore More',
+            'subheading' => 'About PBZ Academy',
+            'heading' => 'Advancing Excellence in Tanzanian Banking',
+            'description' => 'We deliver structured learning pathways designed to uphold the highest regulatory, operational, and customer service standards across Zanzibar and mainland Tanzania.',
+            'cta_label' => 'Learn More',
             'cta_url' => route('about'),
-            'author_name' => 'Ronald Richards',
-            'author_title' => 'Co-Founder',
+            'author_name' => 'Renatus Bernardo',
+            'author_title' => 'Chief Learning Officer',
         ]);
 
         FrontendSetting::setValue('pages.home.discount', [
-            'heading' => 'Act Fast: 50% Off for the First 50 Students!',
-            'description' => 'The ability to learn at my own pace was a game-changer for me. The flexible schedule allowed me to balance my studies with work and personal life, making it possible.',
-            'primary_label' => 'Become a Student',
-            'primary_url' => route('register'),
-            'secondary_label' => 'Become a Teacher',
-            'secondary_url' => route('instructor.register'),
+            'heading' => 'Enroll in Q4 Mandatory Compliance Modules Today',
+            'description' => 'All PBZ branch personnel and head office departments must complete updated Anti-Money Laundering (AML) and Counter-Terrorist Financing (CFT) modules.',
+            'primary_label' => 'Staff Sign In',
+            'primary_url' => route('login'),
+            'secondary_label' => 'Faculty Portal',
+            'secondary_url' => route('instructor.login'),
         ]);
 
         FrontendSetting::setValue('pages.home.features', [
-            'title' => 'Why Choose Us',
-            'subtitle' => 'Learning That Aligns With Your Personal Goals.',
-            'description' => 'Unlock your full potential with education tailored to your personal aspirations. Learn, grow, and achieve success.',
-            'highlight_count' => 92,
-            'highlight_label' => 'Customizable Courses.',
+            'title' => 'Why Learn With Us',
+            'subtitle' => 'Institutional Quality Tailored to Banking Regulations.',
+            'description' => 'Continuous professional development aligned with Bank of Tanzania supervisory requirements and international banking best practices.',
+            'highlight_count' => 100,
+            'highlight_label' => 'BOT Compliant Modules.',
             'items' => [
                 [
-                    'icon' => 'fa-solid fa-lightbulb',
-                    'title' => 'Early Learning',
-                    'description' => 'Engaging programs that nurture curiosity and confidence from the start.',
+                    'icon' => 'fa-solid fa-shield-halved',
+                    'title' => 'Regulatory Compliance',
+                    'description' => 'Bank of Tanzania statutory compliance, AML/CFT audits, and KYC verification standards.',
                 ],
                 [
-                    'icon' => 'fa-solid fa-paintbrush',
-                    'title' => 'Art & Creativity',
-                    'description' => 'Hands-on workshops designed to inspire design thinking and innovation.',
+                    'icon' => 'fa-solid fa-moon',
+                    'title' => 'Islamic Finance',
+                    'description' => 'PBZ Ikhlas Sharia-compliant banking principles, Murabaha, and Ijara governance.',
                 ],
                 [
-                    'icon' => 'fa-solid fa-brain',
-                    'title' => 'Brain Training',
-                    'description' => 'Structured lessons that strengthen problem solving and critical thinking.',
+                    'icon' => 'fa-solid fa-vault',
+                    'title' => 'Branch & Retail Operations',
+                    'description' => 'Cash handling, teller operations, credit risk analysis, and customer service.',
                 ],
                 [
-                    'icon' => 'fa-solid fa-music',
-                    'title' => 'Music Area',
-                    'description' => 'Collaborative sessions that blend creativity with technical mastery.',
+                    'icon' => 'fa-solid fa-chart-line',
+                    'title' => 'Treasury & Risk',
+                    'description' => 'Liquidity management, foreign exchange dealing, and operational risk mitigation.',
                 ],
             ],
         ]);
 
         FrontendSetting::setValue('pages.home.cta', [
-            'heading' => 'Join our newsletter, spam-free.',
-            'description' => 'Get curated learning tips, course launches, and exclusive offers delivered to your inbox.',
-            'placeholder' => 'Enter your email',
-            'button_label' => 'Subscribe Now',
+            'heading' => 'Stay updated with internal training circulars.',
+            'description' => 'Receive direct notifications on regulatory deadlines, new course modules, and faculty office hours.',
+            'placeholder' => 'Enter your official PBZ email',
+            'button_label' => 'Subscribe',
         ]);
 
         FrontendSetting::setValue('pages.about.hero', [
             'subheading' => 'About Us',
-            'heading' => 'Transforming Learning Into Lasting Impact',
-            'description' => 'Eduex is a learning platform built for growth. We pair committed instructors with curious learners, crafting programs that inspire action, unlock career opportunities, and deliver measurable outcomes.',
+            'heading' => 'Transforming Banking Competency Into Lasting Impact',
+            'description' => 'PBZ Learning Academy is the dedicated workforce training institution for The People\'s Bank of Zanzibar, powering continuous regulatory and technical banking development.',
             'cta_label' => 'Explore Courses',
             'cta_url' => route('courses'),
-            'author_name' => 'Eduex Team',
-            'author_title' => 'Committed to lifelong learning',
+            'author_name' => 'PBZ Academy Faculty',
+            'author_title' => 'Excellence in Banking Education',
         ]);
 
         FrontendSetting::setValue('pages.about.features', [

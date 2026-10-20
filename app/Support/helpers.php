@@ -142,8 +142,37 @@ if (!function_exists('frontend_meta')) {
             return $default;
         }
 
+        $cleanText = function ($text) {
+            if (!is_string($text)) {
+                return $text;
+            }
+            if (str_contains($text, 'Join Eduex') || str_contains($text, 'Eduex') || str_contains($text, 'Laravel')) {
+                return str_replace(
+                    [
+                        'Join Eduex to access premium online courses, expert instructors, and immersive learning experiences tailored to every stage of your education.',
+                        'Eduex',
+                        'Laravel',
+                    ],
+                    [
+                        'Official People\'s Bank of Zanzibar (PBZ) Digital Learning Academy. Bank of Tanzania statutory certifications, AML/CFT compliance, and Islamic banking curricula.',
+                        'PBZ Learning Academy',
+                        "People's Bank of Zanzibar (PBZ) LMS",
+                    ],
+                    $text
+                );
+            }
+            return $text;
+        };
+
         if ($key !== null) {
-            return $entry[$key] ?? $default;
+            $val = $entry[$key] ?? $default;
+            return $cleanText($val);
+        }
+
+        if (is_array($entry)) {
+            foreach ($entry as $k => $v) {
+                $entry[$k] = $cleanText($v);
+            }
         }
 
         return $entry;
@@ -255,7 +284,11 @@ if (!function_exists('site_name')) {
      */
     function site_name(): string
     {
-        return branding_settings('site_name', platform_settings('site_name', config('app.name', "People's Bank of Zanzibar (PBZ) LMS")));
+        $name = branding_settings('site_name', platform_settings('site_name', config('app.name', "People's Bank of Zanzibar (PBZ) LMS")));
+        if (empty($name) || in_array(strtolower(trim($name)), ['laravel', 'eduex'])) {
+            return "People's Bank of Zanzibar (PBZ) LMS";
+        }
+        return $name;
     }
 }
 
@@ -265,7 +298,11 @@ if (!function_exists('site_tagline')) {
      */
     function site_tagline(): string
     {
-        return platform_settings('tagline', 'Empower your learning journey');
+        $tagline = platform_settings('tagline', config('app.tagline', 'Bank of Tanzania Certified Digital Academy'));
+        if (empty($tagline) || in_array(strtolower(trim($tagline)), ['empower your learning journey', 'laravel', 'eduex'])) {
+            return 'Bank of Tanzania Certified Digital Academy';
+        }
+        return $tagline;
     }
 }
 

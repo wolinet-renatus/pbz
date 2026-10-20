@@ -11,12 +11,12 @@ cd /home/pbz.wolinet.com/public_html
 git config --global --add safe.directory /home/pbz.wolinet.com/public_html || true
 
 # 2. Fetch and pull latest updates from GitHub
-echo "[1/6] Pulling latest updates..."
+echo "[1/8] Pulling latest updates..."
 git fetch origin main
 git reset --hard origin/main
 
 # 3. Fix OpenLiteSpeed VirtualHost docRoot to point directly to public/
-echo "[2/6] Configuring OpenLiteSpeed document root to public/..."
+echo "[2/8] Configuring OpenLiteSpeed document root to public/..."
 VHOST_CONF="/usr/local/lsws/conf/vhosts/pbz.wolinet.com/vhost.conf"
 if [ -f "$VHOST_CONF" ]; then
     sed -i 's|docRoot.*$VH_ROOT/public_html.*|docRoot                   $VH_ROOT/public_html/public|g' "$VHOST_CONF"
@@ -26,7 +26,7 @@ else
 fi
 
 # 4. Fix standard Linux & OpenLiteSpeed file/folder permissions
-echo "[3/6] Setting standard file & directory permissions..."
+echo "[3/8] Setting standard file & directory permissions..."
 find /home/pbz.wolinet.com/public_html -type d -exec chmod 755 {} \;
 find /home/pbz.wolinet.com/public_html -type f -exec chmod 644 {} \;
 chmod +x /home/pbz.wolinet.com/public_html/scripts/*.sh 2>/dev/null || true
@@ -34,18 +34,30 @@ chmod -R 775 /home/pbz.wolinet.com/public_html/storage
 chmod -R 775 /home/pbz.wolinet.com/public_html/bootstrap/cache
 
 if id "pbzwo5104" &>/dev/null; then
-    echo "[4/6] Setting ownership to CyberPanel user pbzwo5104..."
+    echo "[4/8] Setting ownership to CyberPanel user pbzwo5104..."
     chown -R pbzwo5104:pbzwo5104 /home/pbz.wolinet.com/public_html
 fi
 
-# 5. Build and verify production caches
-echo "[5/6] Building production caches..."
+# 5. Ensure .env has official PBZ identity & domain
+echo "[5/8] Ensuring .env branding & domain..."
+if [ -f ".env" ]; then
+    sed -i 's|^APP_NAME=.*|APP_NAME="People\x27s Bank of Zanzibar (PBZ) LMS"|g' .env
+    sed -i 's|^APP_URL=.*|APP_URL=https://pbz.wolinet.com|g' .env
+fi
+
+# 6. Synchronize database settings & branding seeds
+echo "[6/8] Synchronizing PBZ database branding..."
+php artisan db:seed --class=PlatformSettingSeeder --force || true
+php artisan db:seed --class=FrontendSettingSeeder --force || true
+
+# 7. Build and verify production caches
+echo "[7/8] Building production caches..."
 php artisan storage:link --ansi || true
 php artisan optimize:clear
 php artisan optimize
 
-# 6. Restart OpenLiteSpeed to apply changes immediately
-echo "[6/6] Restarting OpenLiteSpeed..."
+# 8. Restart OpenLiteSpeed to apply changes immediately
+echo "[8/8] Restarting OpenLiteSpeed..."
 if systemctl is-active --quiet lsws; then
     systemctl restart lsws
 elif [ -f "/usr/local/lsws/bin/lswsctrl" ]; then
