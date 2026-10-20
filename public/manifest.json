@@ -1,0 +1,19 @@
+{
+  "name": "PBZ Sovereign Banking Learning Academy",
+  "short_name": "PBZ LMS",
+  "description": "The People's Bank of Zanzibar - Enterprise Compliance, Dual Curriculum & Branch Microlearning",
+  "start_url": "/student/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#002b24",
+  "theme_color": "#006837",
+  "icons": [
+    {
+      "src": "/assets/front/img/logo/black-logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

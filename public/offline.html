@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Island Offline Mode • People's Bank of Zanzibar (PBZ)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #002b24;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .offline-card {
+            background: #081226;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .icon-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(249, 237, 39, 0.15);
+            border: 2px solid #F9ED27;
+            color: #F9ED27;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        .tag-pill {
+            display: inline-block;
+            background: #006837;
+            color: #F9ED27;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+        p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: left;
+            margin-bottom: 24px;
+            font-size: 12.5px;
+            color: #cbd5e1;
+            border-left: 3px solid #F9ED27;
+        }
+        .btn-retry {
+            background: #006837;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-retry:hover {
+            background: #008748;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-card">
+        <div class="icon-circle">
+            <i class="fa-solid fa-wifi-slash"></i>
+        </div>
+        <div>
+            <span class="tag-pill"><i class="fa-solid fa-island-tropical me-1"></i> Zanzibar &amp; Pemba Island Resilient</span>
+            <h1>Island Branch Offline Standby</h1>
+            <p>
+                Temporary branch network drop detected. PBZ LMS has engaged client-side caching to ensure you can continue your frontline microlearning uninterrupted.
+            </p>
+            <div class="info-box">
+                <i class="fa-solid fa-circle-check text-warning" style="margin-right: 6px;"></i>
+                <strong>Progress Protection:</strong> Your completed scenario modules and answers are stored securely in local browser storage and will auto-sync to the PBZ compliance ledger once branch connectivity resumes.
+            </div>
+            <button onclick="window.location.reload()" class="btn-retry">
+                <i class="fa-solid fa-rotate-right"></i> Check Connection
+            </button>
+        </div>
+    </div>
+</body>
+</html>

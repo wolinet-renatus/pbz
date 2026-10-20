@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PBZ Enterprise LMS — Boardroom Defense & Solution </title>
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+
+<body>
+    <button class="sidebar-toggle btn btn-primary" type="button" id="sidebarToggle">
+        <i class="fa-solid fa-bars me-1"></i> PBZ Dossier Index
+    </button>
+    <div class="mobile-sidebar-overlay" id="mobileOverlay"></div>
+
+    <div class="container-fluid doc-container">
+        <div class="row flex-nowrap w-100">
+            <!-- Sidebar -->
+            <aside id="docSidebar" class="doc-sidebar col-lg-3 col-xl-2" aria-label="Documentation navigation">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <img src="assets/images/favicon.png" alt="PBZ Emblem">
+                    </div>
+                    <div>
+                        <p class="brand-title">PBZ Bank LMS</p>
+                        <p class="brand-subtitle">Defense Dossier</p>
+                    </div>
+                </div>
+
+                <nav class="sidebar-section">
+                    <h2>I. Management Invitation</h2>
+                    <ul>
+                        <li><a href="#invitation"><i class="fa-solid fa-envelope-open-text me-1"></i> Formal Invitation Letter</a></li>
+                        <li><a href="#executive-summary"><i class="fa-solid fa-landmark me-1"></i> Executive Summary</a></li>
+                        <li><a href="#key-metrics"><i class="fa-solid fa-chart-line me-1"></i> Key Impact Metrics</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="sidebar-section">
+                    <h2>II. Management Key Areas</h2>
+                    <ul>
+                        <li><a href="#solution-overview"><i class="fa-solid fa-compass me-1"></i> 1. Solution Overview</a></li>
+                        <li><a href="#modules-capabilities"><i class="fa-solid fa-cubes me-1"></i> 2. 17 Enterprise Modules</a></li>
+                        <li><a href="#project-scope"><i class="fa-solid fa-list-check me-1"></i> 3. Scope & Methodology</a></li>
+                        <li><a href="#technical-architecture"><i class="fa-solid fa-network-wired me-1"></i> 4. Technical Architecture</a></li>
+                        <li><a href="#security-governance"><i class="fa-solid fa-shield-halved me-1"></i> 5. Security & Sovereignty</a></li>
+                        <li><a href="#commercial-proposal"><i class="fa-solid fa-coins me-1"></i> 6. Commercial & Man-Days</a></li>
+                        <li><a href="#tco-savings"><i class="fa-solid fa-piggy-bank me-1"></i> 7. 3-Year TCO Savings</a></li>
+                        <li><a href="#component-rationale"><i class="fa-solid fa-puzzle-piece me-1"></i> 8. Core Component Rationale</a></li>
+                        <li><a href="#sustainability"><i class="fa-solid fa-graduation-cap me-1"></i> 9. Sustainability & Training</a></li>
+                        <li><a href="#timeline-roadmap"><i class="fa-solid fa-calendar-check me-1"></i> 10. Execution Roadmap</a></li>
+                        <li><a href="#system-demonstration"><i class="fa-solid fa-laptop-code me-1"></i> 11. Live System Demo</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="sidebar-section">
+                    <h2>III. Boardroom Defense & Close</h2>
+                    <ul>
+                        <li><a href="#boardroom-faq"><i class="fa-solid fa-circle-question me-1"></i> Anticipated Defense Q&A</a></li>
+                        <li><a href="#recommendations"><i class="fa-solid fa-file-signature me-1"></i> Final Recommendations</a></li>
+                        <li><a href="#demo-accounts"><i class="fa-solid fa-users me-1"></i> Seeded Demo Accounts</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="content col">
+                <!-- Hero Header -->
+                <header class="hero" id="top">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-building-columns"></i> People's Bank of Zanzibar Ltd (PBZ)
+                    </div>
+                    <h1>Enterprise Learning Management System (LMS)</h1>
+                    <p>Boardroom Proposal Defense & Solution Architecture Dossier prepared for PBZ Executive Management, Board Evaluation Committee, and Learning & Development Leadership.</p>
+                </header>
+
+                <!-- Section: Management Invitation -->
+                <section id="invitation">
+                    <h2>
+                        <i class="fa-solid fa-envelope-circle-check text-success"></i> 
+                        PBZ Management Presentation Invitation
+                        <span class="section-badge">Official Mandate</span>
+                    </h2>
+                    
+                    <div class="callout defense">
+                        <h4 class="text-success mb-2"><i class="fa-solid fa-file-contract me-2"></i>Official Invitation to Ms. Doreen & Implementation Team</h4>
+                        <p class="fst-italic mb-2" style="font-size: 15px; color: #1e3a29;">
+                            "Dear Ms. Doreen,<br>
+                            Thank you for submitting your proposal for the implementation of the Learning Management System (LMS) at <strong>People’s Bank of Zanzibar Ltd (PBZ)</strong>.<br><br>
+                            Following our preliminary review, we are pleased to invite you to present your proposed solution to PBZ Management next week, on a date to be confirmed shortly.<br><br>
+                            This presentation will allow Management to gain a comprehensive understanding of your solution, key features, implementation methodology, expected benefits, and associated costs, as well as to outline next steps.<br><br>
+                            To ensure a productive session, please structure your presentation around the following key areas:
+                        </p>
+                        <ol class="mb-0 fw-semibold" style="color: #0b3d22;">
+                            <li><strong>Solution Overview:</strong> Key features and strategic benefits for PBZ.</li>
+                            <li><strong>Project Scope & Methodology:</strong> Scope, deliverables, and implementation approach.</li>
+                            <li><strong>Technical Architecture & Security:</strong> System architecture, ownership, security protocols, and data protection.</li>
+                            <li><strong>Commercial Proposal & Resourcing:</strong> Detailed cost breakdown and justification of proposed man-days.</li>
+                            <li><strong>Core Component Rationale:</strong> Clarification on prototyping, content development, and ongoing support/maintenance.</li>
+                            <li><strong>Sustainability & Knowledge Transfer:</strong> Training plans and long-term sustainability.</li>
+                            <li><strong>Project Timeline:</strong> Schedule of key milestones and overall execution roadmap.</li>
+                            <li><strong>System Demonstration:</strong> Live platform demo focusing on user experience and reporting capabilities."</li>
+                        </ol>
+                    </div>
+
+                    <p>This dossier contains the complete, authoritative documentation answering every dimension of PBZ Management's mandate, backed by the <strong>PBZ Proposal Defense Deck</strong> and our live local instance running on the sovereign MAMP environment.</p>
+                </section>
+
+                <!-- Section: Executive Summary & Key Metrics -->
+                <section id="executive-summary">
+                    <h2>
+                        <i class="fa-solid fa-landmark"></i> 
+                        Executive Summary: Strategic Imperative for PBZ
+                    </h2>
+                    <p>Incorporated in 1966 and wholly owned by the Revolutionary Government of Zanzibar, PBZ is undergoing rapid digital modernization across Unguja, Pemba, and Mainland Tanzania. Over 1,200 employees across 34 branches require unified, continuous banking education without escalating physical travel and venue budgets.</p>
+
+                    <div class="kpi-grid" id="key-metrics">
+                        <div class="kpi-card">
+                            <div class="kpi-val">34+</div>
+                            <div class="kpi-title">PBZ Branches Connected</div>
+                            <div class="kpi-desc">Zanzibar (Unguja & Pemba) + Mainland Tanzania</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-val">1,200+</div>
+                            <div class="kpi-title">Bank Employees</div>
+                            <div class="kpi-desc">Zero branch teller operational disruption</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-val">>450M</div>
+                            <div class="kpi-title">TZS Net Savings</div>
+                            <div class="kpi-desc">3-year savings compared to recurring cloud SaaS</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-val">100%</div>
+                            <div class="kpi-title">Data Sovereignty</div>
+                            <div class="kpi-desc">Full compliance with BOT and Tanzania PDPA</div>
+                        </div>
+                    </div>
+
+                    <h3>Core Pillars of the PBZ Solution</h3>
+                    <ul>
+                        <li><strong>Bank of Tanzania (BOT) Regulatory Compliance:</strong> Automated compliance tracking for Anti-Money Laundering (AML/CFT), Sanctions Screening, KYC, and Cyber Hygiene, featuring one-click regulatory audit dossiers in Excel and PDF.</li>
+                        <li><strong>Dual Curriculum Academy (Conventional + PBZ Amana Islamic Banking):</strong> A unified corporate platform supporting conventional retail banking operations alongside Shariah Advisory Board certified Islamic finance contracts (Murabaha, Ijara, Mudaraba, Musharaka).</li>
+                        <li><strong>100% Perpetual Ownership vs SaaS Lock-in:</strong> PBZ receives absolute ownership of source code, configurations, and database schemas with zero recurring per-user license fees.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 1: Solution Overview -->
+                <section id="solution-overview">
+                    <h2>
+                        <span class="section-badge">Area 1</span> 
+                        Solution Overview: Key Features & Strategic Benefits
+                    </h2>
+                    <p>The PBZ Enterprise LMS is tailored specifically for the operational tempo of a high-growth commercial and Islamic bank. It transforms training from an expensive logistical headache into a continuous, measurable competitive advantage.</p>
+
+                    <div class="row g-4 mt-1">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-4 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-shield-virus me-2"></i>Automated Compliance Engine</h4>
+                                <p class="small text-muted mb-0">Dynamic cohort enrollment by branch and role, automated deadline countdown reminders, and instant escalation alerts sent to Branch Managers when staff approach BOT recertification deadlines.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-4 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-mosque me-2"></i>Dual Curriculum Academy</h4>
+                                <p class="small text-muted mb-0">Unified corporate academy supporting Conventional Banking operations alongside specialized PBZ Islamic Banking (Amana) certified by the Shariah Advisory Board with interactive Islamic contracts.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-4 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-mobile-screen-button me-2"></i>Branch Microlearning & Offline PWA</h4>
+                                <p class="small text-muted mb-0">Interactive 5–12 minute scenario modules that tellers complete between customer queues. Client-side caching guarantees uninterrupted learning during temporary island bandwidth drops.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout info mt-4">
+                        <strong>Strategic Benefit to PBZ:</strong> Zero Teller Disruption • Audit-Proof Regulatory Record • Sovereign Tanzanian Data Residency • Scalable across all 34 branches nationwide.
+                    </div>
+                </section>
+
+                <!-- Section 2: 17 Key Enterprise Modules -->
+                <section id="modules-capabilities">
+                    <h2>
+                        <span class="section-badge">Area 1.1</span> 
+                        Key Modules & Enterprise Capabilities (17 Pillars)
+                    </h2>
+                    <p>As detailed in Slides 4, 5, and 6 of the Boardroom Defense Deck, the platform includes 17 specialized modules pre-configured for commercial banking:</p>
+
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Module Name</th>
+                                <th>Banking Capability & Value to PBZ</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>01</strong></td>
+                                <td><strong>Drag & Drop Certificate Studio</strong></td>
+                                <td>Visual studio with 6 bank templates, dynamic tags, and tamper-proof cryptographic QR code verification for branch certificates.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>02</strong></td>
+                                <td><strong>Automated Live Classes</strong></td>
+                                <td>Zoom & Google Meet integration with automatic meeting generation, live countdown timers, and video replay archiving.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>03</strong></td>
+                                <td><strong>Granular Role & RBAC System</strong></td>
+                                <td>Multi-role security (Staff, Branch Managers, Compliance Officers, Super Admins) with module-level permissions and admin lockout protection.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>04</strong></td>
+                                <td><strong>In-Lesson Quizzes & Question Banks</strong></td>
+                                <td>Timed checkpoints within lessons preventing video skipping; randomized question banks for anti-cheating compliance exams.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>05</strong></td>
+                                <td><strong>Lesson Assignments & File Submissions</strong></td>
+                                <td>Branch credit case studies and KYC document review submissions with rubric-based instructor grading.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>06</strong></td>
+                                <td><strong>Separate Instructor & Mentor Panel</strong></td>
+                                <td>Dedicated dashboard for PBZ departmental mentors and senior trainers to grade submissions and track cohort attendance.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>07</strong></td>
+                                <td><strong>Subscriptions & Department Memberships</strong></td>
+                                <td>Internal departmental learning tracks with 1-tap cohort enrollment rules and progress checkpoints.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>08</strong></td>
+                                <td><strong>Global Tax, VAT & Billing Manager</strong></td>
+                                <td>Multi-country tax support with itemized PDF invoice generation for external executive programs.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>09</strong></td>
+                                <td><strong>Database & Automated Backup Engine</strong></td>
+                                <td>One-click snapshot database and file backups with automated retention and secure administrator downloads.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>10</strong></td>
+                                <td><strong>Course Discussion Forums</strong></td>
+                                <td>Threaded per-course Q&A forums where branch officers collaborate, like responses, and review pinned bank circulars.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>11</strong></td>
+                                <td><strong>AI Teacher Assistant</strong></td>
+                                <td>24/7 intelligent study bot for instant policy clarification, automated quiz authoring, and employee learning roadmaps.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>12</strong></td>
+                                <td><strong>Multi-Channel Push Alerts</strong></td>
+                                <td>Universal notification engine delivering instant web, email, and mobile alerts for mandatory deadlines and live sessions.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>13</strong></td>
+                                <td><strong>Real-Time Chat & Direct Messaging</strong></td>
+                                <td>Secure 1-on-1 messaging between learners and instructors with live unread notification counters.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>14</strong></td>
+                                <td><strong>Course Bundles Engine</strong></td>
+                                <td>Group related banking courses (e.g., "Junior Teller Onboarding Pack") into unified learning packages.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>15</strong></td>
+                                <td><strong>Event Management & Workshops</strong></td>
+                                <td>Management of physical seminars, annual risk conferences, and branch workshops with venue capacity tracking.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>16</strong></td>
+                                <td><strong>Multi-Currency Pricing</strong></td>
+                                <td>Seamless support for Tanzanian Shilling (TZS) as primary currency alongside USD for foreign partner certifications.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>17</strong></td>
+                                <td><strong>Mobile App Ready Architecture</strong></td>
+                                <td>Native RESTful API endpoints powering responsive web, Android, and iOS mobile learning apps.</td>
+                                <td><span class="pill-badge green">Included</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Section 3: Project Scope & Methodology -->
+                <section id="project-scope">
+                    <h2>
+                        <span class="section-badge">Area 2</span> 
+                        Project Scope & Implementation Methodology
+                    </h2>
+                    <p>The engagement follows a <strong>Hybrid Agile-Waterfall Framework</strong> designed for Tier-1 financial institutions. It combines strict governance milestone gates with rapid sprint iterations to eliminate project risk.</p>
+
+                    <h3>Core Project Deliverables</h3>
+                    <ul>
+                        <li><strong>High-Availability (HA) Infrastructure:</strong> Multi-tier clustered architecture in PBZ data center or sovereign private cloud with Nginx/HAProxy load balancing and automated failover.</li>
+                        <li><strong>Bespoke PBZ Banking Theme:</strong> Official corporate styling featuring PBZ Green (<code>#006837</code>) and PBZ Blue (<code>#32C5F1</code>), fully responsive across desktop workstations and mobile tablets.</li>
+                        <li><strong>Active Directory & SAML SSO Integration:</strong> Single Sign-On integration with PBZ Corporate Microsoft 365 / Active Directory with instant deprovisioning when employees depart the bank.</li>
+                        <li><strong>BOT Compliance Reporting Engine:</strong> Custom reporting engine generating official Bank of Tanzania audit dossiers with timestamps, scores, and one-click Excel/PDF exports.</li>
+                        <li><strong>3 Pilot Interactive SCORM Modules:</strong>
+                            <ol>
+                                <li>Anti-Money Laundering (AML/CFT) & Cash Structuring Detection</li>
+                                <li>Cyber Hygiene & Threat Defense for Branch Staff</li>
+                                <li>PBZ Amana Islamic Banking: Shariah Contracts & Operations</li>
+                            </ol>
+                        </li>
+                        <li><strong>Quality Assurance & Certified Knowledge Transfer:</strong> Load testing up to 1,000 concurrent users, independent penetration testing, and 10 full days of certified hands-on training.</li>
+                    </ul>
+
+                    <h3>The 5 Strict Governance Gates</h3>
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-light">
+                                <span class="pill-badge green mb-2">Gate 1 • Week 3</span>
+                                <h5 class="mb-1">Blueprint Sign-Off</h5>
+                                <p class="small text-muted mb-0">Architecture, AD schema mapping, and security controls approved by PBZ IT & Compliance.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-light">
+                                <span class="pill-badge green mb-2">Gate 2 • Week 5</span>
+                                <h5 class="mb-1">Prototype Approval</h5>
+                                <p class="small text-muted mb-0">Interactive, clickable PBZ prototype verified by HR, L&D, and Branch Managers before heavy build.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-light">
+                                <span class="pill-badge green mb-2">Gate 3 • Week 11</span>
+                                <h5 class="mb-1">Pilot Readiness</h5>
+                                <p class="small text-muted mb-0">3 banking modules ingested and automated BOT reporting verified against regulatory templates.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="p-3 border rounded-3 bg-light">
+                                <span class="pill-badge green mb-2">Gate 4 • Week 13</span>
+                                <h5 class="mb-1">Security Acceptance</h5>
+                                <p class="small text-muted mb-0">Zero critical or high vulnerabilities in penetration testing; 1,000 concurrent users stress-test passed.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="p-3 border rounded-3 bg-light">
+                                <span class="pill-badge green mb-2">Gate 5 • Week 14</span>
+                                <h5 class="mb-1">Full Nationwide Launch</h5>
+                                <p class="small text-muted mb-0">10 days of certified training completed, admin manual signed off, nationwide branch rollout initiated.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 & 5: Technical Architecture & Security -->
+                <section id="technical-architecture">
+                    <h2>
+                        <span class="section-badge">Area 3</span> 
+                        Technical Architecture & High-Availability Topology
+                    </h2>
+                    <p>The enterprise topology conforms strictly to the <strong>Bank of Tanzania (BOT) Cybersecurity Guidelines</strong> and the <strong>Tanzania Personal Data Protection Act (PDPA)</strong>.</p>
+
+                    <div class="architecture-box">
+                        <div class="architecture-tier">
+                            <h5><i class="fa-solid fa-shield me-2"></i>Tier 1: Perimeter DMZ & Security Layer</h5>
+                            <p>PBZ Web Application Firewall (WAF) & DDoS Protection • Mandatory TLS 1.3 Termination with Strict HSTS • Nginx/HAProxy Reverse Proxy Load Balancer with Automated Health Checks & Instant Failover.</p>
+                        </div>
+                        <div class="architecture-tier">
+                            <h5><i class="fa-solid fa-server me-2"></i>Tier 2: Application Cluster (Isolated Private Subnet)</h5>
+                            <p>Active-Active Moodle/Laravel Core App Nodes (PHP 8.3-FPM) • PBZ Corporate Banking Theme Engine • Automated BOT Regulatory Reporting Plugin • Redis In-Memory Distributed Session & MUC Caching Cluster (Sub-millisecond query latency).</p>
+                        </div>
+                        <div class="architecture-tier">
+                            <h5><i class="fa-solid fa-database me-2"></i>Tier 3: Core Data Storage & Directory Integration</h5>
+                            <p>MySQL 8.0 / PostgreSQL 16 High-Availability Cluster (Primary + Synchronous Standby with Automated Backups) • PBZ Corporate Active Directory / Azure AD SAML 2.0 Single Sign-On • AES-256 Encrypted Shared Storage for Scorm & Certificates.</p>
+                        </div>
+                    </div>
+
+                    <h3 id="security-governance">Security Protocols & Data Sovereignty</h3>
+                    <div class="row g-4 mt-1">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-key me-2"></i>100% Perpetual Ownership</h4>
+                                <p class="small text-muted mb-0">PBZ receives complete ownership of source code, configurations, plugins, and database schemas. Unlike proprietary SaaS, the core engine has <strong>ZERO recurring per-user license fees in perpetuity</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-flag me-2"></i>Sovereign Data Residency</h4>
+                                <p class="small text-muted mb-0">All database records, employee profiles, assessment scores, and audit logs reside <strong>100% within Tanzania/Zanzibar borders</strong>, fulfilling BOT regulatory mandates and PDPA compliance.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-lock me-2"></i>Enterprise Cryptography</h4>
+                                <p class="small text-muted mb-0">Mandatory TLS 1.3 in transit with HSTS; database tablespaces and file stores encrypted using <strong>AES-256 with PBZ-managed cryptographic keys</strong> and automated key rotation.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-id-badge me-2"></i>Identity Governance & MFA</h4>
+                                <p class="small text-muted mb-0">Active Directory synchronization: when employees depart the bank, their LMS access is <strong>revoked instantaneously</strong>. Mandatory Multi-Factor Authentication (MFA) for Admins and Branch Managers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6 & 7: Commercial Proposal & Man-Days Justification -->
+                <section id="commercial-proposal">
+                    <h2>
+                        <span class="section-badge">Area 4</span> 
+                        Commercial Proposal & Man-Days Justification
+                    </h2>
+                    <p>The total professional investment for the turnkey delivery, enterprise hardening, content creation, and handover is <strong>100,100,000 TZS (~$38,200 USD)</strong> over 118 verified expert man-days.</p>
+
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Role Profile</th>
+                                <th>Days</th>
+                                <th>Responsibilities & Value Delivered to PBZ</th>
+                                <th>Daily Rate (TZS)</th>
+                                <th>Total (TZS)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Enterprise Solutions Architect</strong></td>
+                                <td>18</td>
+                                <td>HA cluster topology, BOT compliance validation, security blueprint & governance sign-off.</td>
+                                <td>1,100,000</td>
+                                <td>19,800,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Senior LMS Engineer</strong></td>
+                                <td>32</td>
+                                <td>Core setup, custom PBZ theme development, custom BOT regulatory reporting engine.</td>
+                                <td>850,000</td>
+                                <td>27,200,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Integration & Security Specialist</strong></td>
+                                <td>20</td>
+                                <td>Active Directory / SAML SSO integration, TLS hardening, WAF rules & load testing.</td>
+                                <td>950,000</td>
+                                <td>19,000,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Banking Instructional Designer</strong></td>
+                                <td>22</td>
+                                <td>Interactive SCORM/H5P branching modules (AML/CFT, Cyber Hygiene, PBZ Amana).</td>
+                                <td>750,000</td>
+                                <td>16,500,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quality Assurance & UAT Lead</strong></td>
+                                <td>14</td>
+                                <td>Automated test scripts, cross-branch latency validation, UAT coordination & defect triage.</td>
+                                <td>700,000</td>
+                                <td>9,800,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LMS Training Specialist</strong></td>
+                                <td>12</td>
+                                <td>Train-the-Trainer certification, PBZ IT handover, operations manuals & video guides.</td>
+                                <td>650,000</td>
+                                <td>7,800,000</td>
+                            </tr>
+                            <tr style="background: #e8f5e9; font-weight: 800;">
+                                <td><strong>TOTAL PROFESSIONAL INVESTMENT</strong></td>
+                                <td><strong>118 Days</strong></td>
+                                <td><strong>Turnkey Implementation, Hardening, Content & Handover</strong></td>
+                                <td>—</td>
+                                <td><strong>100,100,000 TZS</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tco-savings">3-Year TCO Comparison vs Proprietary SaaS</h3>
+                    <p>Proprietary cloud SaaS platforms (e.g. SAP SuccessFactors, Cornerstone) charge escalating per-user annual license fees that leave the bank with zero code ownership and host banking data abroad.</p>
+
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Cost Item</th>
+                                <th>Commercial SaaS (Cornerstone / SAP)</th>
+                                <th>Proposed PBZ Enterprise Solution</th>
+                                <th>Net Savings to PBZ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Year 1 Implementation</strong></td>
+                                <td>$25,000 USD (Setup) + $62,000 USD (Licensing)</td>
+                                <td><strong>$38,200 USD (~100.1M TZS)</strong></td>
+                                <td><span class="pill-badge green">+$48,800 USD Savings</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Year 2 Licensing</strong></td>
+                                <td>$62,000 USD (Perpetual Recurring)</td>
+                                <td><strong>$0 USD (Zero Core License)</strong></td>
+                                <td><span class="pill-badge green">+$62,000 USD Savings</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Year 3 Licensing</strong></td>
+                                <td>$62,000 USD (Perpetual Recurring)</td>
+                                <td><strong>$0 USD (Zero Core License)</strong></td>
+                                <td><span class="pill-badge green">+$62,000 USD Savings</span></td>
+                            </tr>
+                            <tr style="background: #e8f5e9; font-weight: 800;">
+                                <td><strong>3-YEAR TOTAL COST</strong></td>
+                                <td><strong>$211,000 USD (~550,000,000 TZS)</strong></td>
+                                <td><strong>$38,200 USD (~100,100,000 TZS)</strong></td>
+                                <td><span class="pill-badge green" style="font-size: 13px;">>450M TZS NET SAVINGS</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="callout defense">
+                        <strong>Financial Bottom Line for PBZ Management:</strong><br>
+                        Commercial SaaS platforms bill PBZ per employee year after year, exceeding TZS 550M over 3 years without building any institutional capital. Our model is a <strong>capitalized, sovereign investment</strong>: PBZ retains 100% perpetual ownership of the entire system and saves <strong>over TZS 450,000,000 ($170,000+ USD)</strong> over the first 3 years.
+                    </div>
+                </section>
+
+                <!-- Section 8: Core Component Rationale -->
+                <section id="component-rationale">
+                    <h2>
+                        <span class="section-badge">Area 5</span> 
+                        Core Component Rationale
+                    </h2>
+                    <p>PBZ Management requested clarification on prototyping, content development, and ongoing maintenance. Here is the operational rationale:</p>
+
+                    <div class="row g-4 mt-1">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4>1. Interactive Prototyping Phase</h4>
+                                <span class="pill-badge blue mb-2">Eliminates End-User Adoption Risk</span>
+                                <p class="small text-muted mt-2 mb-0">Delivering a clickable, interactive PBZ prototype by Week 5 allows HR, Branch Managers, and IT to test navigation, course mechanics, and reporting layouts early. This de-risks the bank and prevents expensive late-stage redesigns.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4>2. Interactive Content Development</h4>
+                                <span class="pill-badge green mb-2">Solves Compliance Retention Deficit</span>
+                                <p class="small text-muted mt-2 mb-0">Static 50-page PDFs have under 15% retention, exposing PBZ to compliance failures. We convert policies into interactive SCORM/H5P branching scenarios where staff make realistic branch decisions, yielding <strong>>80% retention and verifiable audit proof</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4>3. Support & Maintenance SLA</h4>
+                                <span class="pill-badge gold mb-2">Guarantees Business Continuity</span>
+                                <p class="small text-muted mt-2 mb-0">Commercial banking demands strict recovery targets: <strong>Priority 1 (outage) response &lt; 1 hr, resolution &lt; 4 hrs; Priority 2 &lt; 4 hrs</strong>. Includes quarterly security patches, OS updates, and local Tanzanian engineering support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 9: Sustainability & Knowledge Transfer -->
+                <section id="sustainability">
+                    <h2>
+                        <span class="section-badge">Area 6</span> 
+                        Sustainability & Certified Knowledge Transfer
+                    </h2>
+                    <p>To guarantee complete self-sufficiency and avoid vendor dependency, the project concludes with <strong>10 days of certified, hands-on training</strong> split across two tailored tracks:</p>
+
+                    <div class="row g-4 mt-1">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-terminal me-2"></i>Track 1: PBZ IT & Infrastructure Admins</h4>
+                                <span class="pill-badge green mb-2">Duration: 5 Days Intensive Certification</span>
+                                <ul class="small text-muted mt-2 mb-0">
+                                    <li>Linux server administration & PHP 8.3 performance tuning</li>
+                                    <li>Database cluster maintenance & automated backup drills</li>
+                                    <li>Redis distributed caching & session performance tuning</li>
+                                    <li>Active Directory / SAML SSO sync & token management</li>
+                                    <li>Security log rotation, patch cycles & DR failover procedures</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light h-100">
+                                <h4 class="text-success"><i class="fa-solid fa-chalkboard-user me-2"></i>Track 2: PBZ HR, L&D & Branch Mentors</h4>
+                                <span class="pill-badge blue mb-2">Duration: 5 Days Train-the-Trainer</span>
+                                <ul class="small text-muted mt-2 mb-0">
+                                    <li>Course authoring, question banks & SCORM/H5P uploads</li>
+                                    <li>Automated cohort enrollment rules by branch & role</li>
+                                    <li>Generating digital certificates with verifiable cryptographic QR codes</li>
+                                    <li>Extracting & scheduling official Bank of Tanzania (BOT) reports</li>
+                                    <li>Automated learner reminders & gamification badges</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-4">Formal Handover Deliverables</h4>
+                    <ol>
+                        <li><strong>PBZ LMS Administrator Operations Manual (SOP):</strong> Complete technical runbook covering every maintenance and DR procedure.</li>
+                        <li><strong>HR Course Authoring Guide & Style Standards:</strong> Blueprint for creating new bank modules and assessments.</li>
+                        <li><strong>10+ High-Definition Training Video Walkthroughs:</strong> Permanent on-demand screencasts for onboarding future PBZ IT and HR personnel.</li>
+                        <li><strong>Complete Git Source Code Repository:</strong> Full commit history, configuration scripts, and deployment recipes.</li>
+                    </ol>
+                </section>
+
+                <!-- Section 10: Project Timeline Roadmap -->
+                <section id="timeline-roadmap">
+                    <h2>
+                        <span class="section-badge">Area 7</span> 
+                        Project Timeline: 18-Week Execution Roadmap
+                    </h2>
+                    <p>Structured across 6 phased stages with clear milestone gates:</p>
+
+                    <div class="timeline-step">
+                        <div class="timeline-title">Phase 1 — Inception & Discovery (Weeks 1–3)</div>
+                        <div class="timeline-meta">Deliverable: Blueprint Document • Gate 1 Sign-Off</div>
+                        <p class="small text-muted mb-0">Detailed requirements gathering, AD schema mapping, network topology sign-off, and security control matrix approval.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-title">Phase 2 — Prototyping & Infrastructure Provisioning (Weeks 4–7)</div>
+                        <div class="timeline-meta">Deliverable: Clickable Prototype • Gate 2 Approval (Week 5)</div>
+                        <p class="small text-muted mb-0">Server provisioning, HA database cluster configuration, and interactive prototype delivery for management sign-off.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-title">Phase 3a — Theming & Directory Sync (Weeks 8–9)</div>
+                        <div class="timeline-meta">Deliverable: PBZ Theme & Single Sign-On Verified</div>
+                        <p class="small text-muted mb-0">Deployment of official PBZ corporate branding (#006837, #32C5F1) and Active Directory SAML 2.0 integration.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-title">Phase 3b — Banking Content Ingestion & Reporting (Weeks 10–11)</div>
+                        <div class="timeline-meta">Deliverable: 3 Pilot Modules Ingested • Gate 3 Pilot Readiness</div>
+                        <p class="small text-muted mb-0">Conversion of policies into 3 pilot SCORM modules (AML/CFT, Cyber, Amana) and custom BOT compliance reporting plugin activation.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-title">Phase 4 — Security Audit & User Acceptance Testing (Weeks 12–13)</div>
+                        <div class="timeline-meta">Deliverable: Security Audit Sign-Off • Gate 4 Security Acceptance</div>
+                        <p class="small text-muted mb-0">1,000 concurrent user load testing, penetration testing remediation, and formal UAT sign-off by PBZ HR & IT.</p>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="timeline-title">Phase 5 — Knowledge Transfer & Nationwide Go-Live (Week 14)</div>
+                        <div class="timeline-meta">Deliverable: 10 Days Certified Training Complete • Gate 5 Full Launch</div>
+                        <p class="small text-muted mb-0">Execution of certified training tracks, formal SOP handover, and rollout across all 34 branches.</p>
+                    </div>
+
+                    <div class="timeline-step mb-0">
+                        <div class="timeline-title">Phase 6 — Hypercare Support (Weeks 15–18)</div>
+                        <div class="timeline-meta">Deliverable: 30 Days Dedicated Support • Final Project Acceptance</div>
+                        <p class="small text-muted mb-0">On-site and remote engineering support during initial branch operations to guarantee smooth adoption.</p>
+                    </div>
+                </section>
+
+                <!-- Section 11: Live System Demonstration Guide -->
+                <section id="system-demonstration">
+                    <h2>
+                        <span class="section-badge">Area 8</span> 
+                        System Demonstration: Live Platform Showcase
+                    </h2>
+                    <p>During the live management session, the platform demo is structured around <strong>three operational personas</strong> to demonstrate end-to-end value:</p>
+
+                    <div class="persona-grid">
+                        <div class="persona-card">
+                            <div class="persona-role">Persona 1: Branch Learner</div>
+                            <h4>Branch Teller / Operations Officer</h4>
+                            <ul class="small text-muted ps-3 mb-0">
+                                <li>Active Directory Single Sign-On (SSO) login</li>
+                                <li>Personalized compliance deadline countdown widget</li>
+                                <li>Interactive AML/CFT branching scenario simulation (cash structuring detection)</li>
+                                <li>Instant generation of verifiable PBZ Academy Certificate with digital seal</li>
+                            </ul>
+                        </div>
+
+                        <div class="persona-card">
+                            <div class="persona-role">Persona 2: Executive & Compliance</div>
+                            <h4>Head of HR & Regulatory Compliance</h4>
+                            <ul class="small text-muted ps-3 mb-0">
+                                <li>Real-time compliance heatmap across all 34 branches in Zanzibar & Mainland</li>
+                                <li>Branch drill-down capability (Forodhani Branch 98% vs Kariakoo 88%)</li>
+                                <li>One-click official Bank of Tanzania (BOT) compliance audit export in Excel/PDF</li>
+                                <li>Automated escalation reminders to non-compliant branches</li>
+                            </ul>
+                        </div>
+
+                        <div class="persona-card">
+                            <div class="persona-role">Persona 3: IT Administrator</div>
+                            <h4>Chief Information Officer / LMS Admin</h4>
+                            <ul class="small text-muted ps-3 mb-0">
+                                <li>Automated Active Directory synchronization and branch cohort assignments</li>
+                                <li>Inspection of immutable security audit logs (forensic login & score tracking)</li>
+                                <li>One-click database backup and system health monitoring</li>
+                                <li>Granular role-based access control (RBAC) management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 12: Boardroom Defense & FAQ -->
+                <section id="boardroom-faq">
+                    <h2>
+                        <i class="fa-solid fa-shield-cat"></i> 
+                        Anticipated Tough Questions & Boardroom Defense
+                    </h2>
+                    <p>Prepared responses for rigorous evaluation committee queries as outlined in Slide 17:</p>
+
+                    <div class="callout defense mb-3">
+                        <h4 class="text-success mb-2">Q1: "Why not purchase a turnkey cloud SaaS like SAP SuccessFactors or Cornerstone?"</h4>
+                        <ol class="small mb-0 text-dark ps-3">
+                            <li><strong>Data Sovereignty:</strong> SaaS platforms host banking records outside Tanzania, violating Bank of Tanzania guidelines and the Tanzania PDPA.</li>
+                            <li><strong>Exorbitant Cost:</strong> SaaS incurs perpetual recurring per-user fees ($62k/year forever). Our sovereign open model saves <strong>over TZS 450M in 3 years</strong>.</li>
+                            <li><strong>Islamic Banking Specialization:</strong> Commercial SaaS cannot support PBZ's specific Amana Islamic finance workflows without prohibitive customization expenses.</li>
+                        </ol>
+                    </div>
+
+                    <div class="callout defense mb-3">
+                        <h4 class="text-success mb-2">Q2: "Is open-source software sufficiently secure for a commercial bank?"</h4>
+                        <ol class="small mb-0 text-dark ps-3">
+                            <li><strong>Global Defense Trust:</strong> Enterprise open-source learning cores are trusted by the UK Ministry of Defence, major multinational banks, and 400M+ users globally.</li>
+                            <li><strong>Bank-Grade Hardening:</strong> Deployed behind PBZ's enterprise WAF with TLS 1.3, AES-256 database encryption, and Active Directory authentication, delivering far greater control and security transparency than multi-tenant public cloud SaaS.</li>
+                        </ol>
+                    </div>
+
+                    <div class="callout defense">
+                        <h4 class="text-success mb-2">Q3: "What happens if our internal IT team has issues after the project finishes?"</h4>
+                        <ol class="small mb-0 text-dark ps-3">
+                            <li><strong>100% Self-Sufficiency:</strong> 10 full days of certified hands-on training, complete SOP operations manuals, and full Git code repository handover.</li>
+                            <li><strong>Local Support SLA:</strong> Enterprise Support SLA with guaranteed sub-1 hour response times for critical incidents backed by local Tanzanian engineers.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Section 13: Recommendations & Demo Accounts -->
+                <section id="recommendations">
+                    <h2>
+                        <i class="fa-solid fa-handshake"></i> 
+                        Summary of Recommendations & Next Steps
+                    </h2>
+                    <p>Recommendation for PBZ Board Evaluation Committee Approval:</p>
+                    <ol>
+                        <li><strong>Strategic Approval:</strong> Authorize the turnkey implementation of the PBZ Enterprise Learning Management System (LMS) based on the open enterprise banking core.</li>
+                        <li><strong>Sovereign Deployment:</strong> Establish the multi-tier High-Availability infrastructure within PBZ's internal network / sovereign private cloud in full compliance with Bank of Tanzania Cybersecurity Guidelines and Tanzania PDPA.</li>
+                        <li><strong>Financial Prudence:</strong> Secure 100% perpetual ownership of code, configurations, and database for a total professional fee of <strong>TZS 100,100,000 (~$38,200 USD)</strong>, unlocking over TZS 450M in 3-year savings compared to recurring cloud SaaS.</li>
+                        <li><strong>Immediate Next Step:</strong> Sign-off on <strong>Gate 1 (Blueprint & Architecture)</strong> to initiate Sprint 1 requirements kickoff.</li>
+                    </ol>
+
+                    <h3 id="demo-accounts" class="mt-4">Live Platform Demo Credentials</h3>
+                    <p>The following demo accounts are provisioned on this local MAMP instance for the live presentation:</p>
+                    
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Demo Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="pill-badge green">Administrator</span></td>
+                                <td><code>admin@eduex.com</code></td>
+                                <td><code>password</code></td>
+                                <td>Compliance analytics, branch cohorts, certificate designer, audit exports.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill-badge blue">Instructor / Mentor</span></td>
+                                <td><code>instructor@eduex.com</code></td>
+                                <td><code>password</code></td>
+                                <td>Course management, assignment grading, live webinars, student feedback.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pill-badge gold">Branch Staff / Student</span></td>
+                                <td><code>student@eduex.com</code></td>
+                                <td><code>password</code></td>
+                                <td>Branch teller microlearning, AML/CFT quiz, instant digital certificate.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="mt-4 p-3 bg-light border rounded-3 text-center">
+                        <a href="../public" class="btn btn-success btn-lg px-4 me-2" style="background: #006837; border-color: #006837;">
+                            <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Launch PBZ LMS Platform
+                        </a>
+                        <a href="../public/login" class="btn btn-outline-success btn-lg px-4">
+                            <i class="fa-solid fa-right-to-bracket me-2"></i> Open Login Screen
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="page-footer">
+                    <p>© 2026 People's Bank of Zanzibar Ltd (PBZ). All Rights Reserved. Sovereign Banking LMS Defense Dossier.</p>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toggle Script -->
+    <script>
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const docSidebar = document.getElementById('docSidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleSidebar() {
+            document.querySelector('.doc-container').classList.toggle('sidebar-open');
+            mobileOverlay.classList.toggle('active');
+        }
+
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', toggleSidebar);
+        }
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', toggleSidebar);
+        }
+    </script>
+</body>
+</html>

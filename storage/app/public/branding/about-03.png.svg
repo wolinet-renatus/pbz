@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dhowBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#006837"/>
+      <stop offset="100%" stop-color="#32C5F1"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" rx="30" fill="url(#dhowBg)"/>
+  <circle cx="150" cy="150" r="120" fill="#072818" opacity="0.85"/>
+  <circle cx="150" cy="150" r="105" fill="none" stroke="#F9ED27" stroke-width="2" stroke-dasharray="6 4"/>
+  
+  <!-- Dhow Boat Silhouette -->
+  <g transform="translate(60, 80) scale(0.6)">
+    <!-- Hull -->
+    <path d="M20,190 Q150,230 280,190 C260,240 60,240 20,190 Z" fill="#F9ED27"/>
+    <!-- Sail -->
+    <path d="M150,20 L150,190 M150,20 L50,170 L150,170 M150,40 L250,160 L150,160" fill="#ffffff" stroke="#ffffff" stroke-width="3"/>
+    <!-- Waves -->
+    <path d="M0,230 Q75,210 150,230 T300,230" fill="none" stroke="#32C5F1" stroke-width="4"/>
+  </g>
+
+  <text x="150" y="248" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">ZANZIBAR SOVEREIGNTY</text>
+</svg>

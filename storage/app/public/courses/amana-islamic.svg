@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022115"/>
+      <stop offset="50%" stop-color="#005a30"/>
+      <stop offset="100%" stop-color="#03381e"/>
+    </linearGradient>
+    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE066"/>
+      <stop offset="50%" stop-color="#F9ED27"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64D8F8"/>
+      <stop offset="100%" stop-color="#0099D8"/>
+    </linearGradient>
+    <filter id="shadow2" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bgGrad2)"/>
+
+  <!-- Islamic Geometric Rosette & Star Lattice Pattern -->
+  <g opacity="0.12" stroke="url(#goldGrad2)" stroke-width="1.5" fill="none">
+    <g transform="translate(620, 240)">
+      <polygon points="0,-160 113,-113 160,0 113,113 0,160 -113,113 -160,0 -113,-113"/>
+      <polygon points="0,-160 113,-113 160,0 113,113 0,160 -113,113 -160,0 -113,-113" transform="rotate(22.5)"/>
+      <polygon points="0,-160 113,-113 160,0 113,113 0,160 -113,113 -160,0 -113,-113" transform="rotate(45)"/>
+      <polygon points="0,-160 113,-113 160,0 113,113 0,160 -113,113 -160,0 -113,-113" transform="rotate(67.5)"/>
+      <circle cx="0" cy="0" r="120"/>
+      <circle cx="0" cy="0" r="80"/>
+      <circle cx="0" cy="0" r="40"/>
+    </g>
+  </g>
+
+  <!-- Wave Accent -->
+  <path d="M0,430 C240,400 480,460 800,420 L800,480 L0,480 Z" fill="#01180f" opacity="0.7"/>
+
+  <!-- PBZ Amana Badge -->
+  <g transform="translate(50, 45)">
+    <rect width="180" height="34" rx="17" fill="#ffffff" opacity="0.12"/>
+    <circle cx="20" cy="17" r="7" fill="#32C5F1"/>
+    <text x="36" y="22" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="1">PBZ AMANA</text>
+    <rect x="195" y="0" width="160" height="34" rx="17" fill="url(#goldGrad2)"/>
+    <text x="210" y="22" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="800" fill="#072818" letter-spacing="0.5">SHARIAH CERTIFIED</text>
+  </g>
+
+  <!-- Central Graphic: Islamic Arch & Golden Crescent / Book -->
+  <g transform="translate(620, 240)" filter="url(#shadow2)">
+    <!-- Pointed Arch Doorway Motif -->
+    <path d="M-85,120 L-85,-20 C-85,-90 0,-140 0,-140 C0,-140 85,-90 85,-20 L85,120 Z" fill="#072d1c" stroke="url(#goldGrad2)" stroke-width="3"/>
+    <path d="M-70,120 L-70,-15 C-70,-75 0,-115 0,-115 C0,-115 70,-75 70,-15 L70,120 Z" fill="#0b4028" stroke="#32C5F1" stroke-width="1.5" opacity="0.8"/>
+    
+    <!-- Crescent & Star -->
+    <g transform="translate(0, -25) scale(1.2)">
+      <path d="M-5,-45 A32,32 0 1,0 35,5 A26,26 0 1,1 -5,-45 Z" fill="url(#goldGrad2)"/>
+      <polygon points="12,-15 16,-6 26,-6 18,1 21,11 12,5 4,11 7,1 -1,-6 9,-6" fill="url(#goldGrad2)"/>
+    </g>
+
+    <!-- Open Shariah Book / Contract Scroll -->
+    <g transform="translate(0, 55)">
+      <path d="M-45,15 C-20,5 -5,10 0,18 C5,10 20,5 45,15 L45,-15 C20,-25 5,-20 0,-12 C-5,-20 -20,-25 -45,-15 Z" fill="#ffffff" opacity="0.95"/>
+      <path d="M-40,10 C-20,2 -5,6 0,14 C5,6 20,2 40,10 L40,-10 C20,-18 5,-14 0,-7 C-5,-14 -20,-18 -40,-10 Z" fill="#f8fafc"/>
+      <line x1="-32" y1="-3" x2="-8" y2="-7" stroke="#006837" stroke-width="1.5"/>
+      <line x1="-32" y1="4" x2="-8" y2="0" stroke="#006837" stroke-width="1.5"/>
+      <line x1="8" y1="-7" x2="32" y2="-3" stroke="#006837" stroke-width="1.5"/>
+      <line x1="8" y1="0" x2="32" y2="4" stroke="#006837" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- Typography Left Side -->
+  <g transform="translate(50, 130)">
+    <text x="0" y="30" font-family="'Inter', system-ui, sans-serif" font-size="14" font-weight="600" fill="#32C5F1" letter-spacing="2">ISLAMIC BANKING OPERATIONS</text>
+    <text x="0" y="80" font-family="'Inter', system-ui, sans-serif" font-size="34" font-weight="900" fill="#ffffff" letter-spacing="-0.5">PBZ Amana</text>
+    <text x="0" y="125" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="800" fill="#F9ED27">Shariah Contracts &amp; Governance</text>
+    
+    <text x="0" y="175" font-family="'Inter', system-ui, sans-serif" font-size="16" font-weight="400" fill="#cbd5e1">
+      Murabaha, Ijara, Mudaraba, Musharaka &amp; Sukuk Financial Frameworks,
+    </text>
+    <text x="0" y="200" font-family="'Inter', system-ui, sans-serif" font-size="16" font-weight="400" fill="#cbd5e1">
+      Shariah Board Supervisory Standards &amp; Zakat Accounting Rules.
+    </text>
+
+    <!-- Badges Row -->
+    <g transform="translate(0, 240)">
+      <rect width="110" height="32" rx="8" fill="#ffffff" opacity="0.1"/>
+      <text x="14" y="21" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">5 Modules</text>
+
+      <rect x="122" y="0" width="120" height="32" rx="8" fill="#ffffff" opacity="0.1"/>
+      <text x="136" y="21" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">22 Lessons</text>
+
+      <rect x="254" y="0" width="155" height="32" rx="8" fill="#F9ED27" opacity="0.2"/>
+      <text x="268" y="21" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="700" fill="#F9ED27">Shariah Diploma</text>
+    </g>
+  </g>
+</svg>

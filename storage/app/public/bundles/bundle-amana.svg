@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="amanaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#031c12"/>
+      <stop offset="60%" stop-color="#005a30"/>
+      <stop offset="100%" stop-color="#052f1e"/>
+    </linearGradient>
+    <linearGradient id="amanaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9ED27"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997b19"/>
+    </linearGradient>
+    <linearGradient id="amanaCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#32C5F1"/>
+      <stop offset="100%" stop-color="#00a0dc"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#amanaBg)"/>
+
+  <!-- Islamic 8-Point Star Geometries -->
+  <g opacity="0.08" stroke="#F9ED27" stroke-width="2" fill="none">
+    <g transform="translate(680, 120)">
+      <rect x="-70" y="-70" width="140" height="140"/>
+      <rect x="-70" y="-70" width="140" height="140" transform="rotate(45)"/>
+      <circle r="60"/>
+    </g>
+  </g>
+
+  <!-- PBZ Header Bar -->
+  <g transform="translate(50, 45)">
+    <rect width="170" height="34" rx="17" fill="#ffffff" opacity="0.12"/>
+    <circle cx="20" cy="17" r="7" fill="#F9ED27"/>
+    <text x="36" y="22" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="700" fill="#32C5F1" letter-spacing="1">PBZ AMANA</text>
+    <rect x="185" y="0" width="150" height="34" rx="17" fill="url(#amanaGold)"/>
+    <text x="200" y="22" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="800" fill="#041a10" letter-spacing="0.5">SHARIAH CERTIFIED</text>
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(50, 150)">
+    <text font-family="'Inter', system-ui, sans-serif" font-size="14" font-weight="700" fill="#F9ED27" letter-spacing="3">EXECUTIVE SHARIAH DIPLOMA</text>
+    <text y="48" font-family="'Inter', system-ui, sans-serif" font-size="34" font-weight="900" fill="#ffffff" line-height="1.2">
+      <tspan x="0" dy="0">PBZ Amana Islamic Finance &amp;</tspan>
+      <tspan x="0" dy="44" fill="url(#amanaGold)">Banking Operations Diploma</tspan>
+    </text>
+    
+    <text y="145" font-family="'Inter', system-ui, sans-serif" font-size="16" fill="#d1e5db">
+      End-to-End Shariah Contracts, Murabaha, Mudaraba, Ijara &amp; BOT Shariah Directives
+    </text>
+
+    <!-- Meta pills -->
+    <g transform="translate(0, 185)">
+      <rect width="160" height="36" rx="8" fill="#ffffff" opacity="0.1"/>
+      <text x="20" y="23" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff">Shariah Board Verified</text>
+
+      <rect x="175" width="150" height="36" rx="8" fill="#ffffff" opacity="0.1"/>
+      <text x="195" y="23" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff">Practical Audits</text>
+
+      <rect x="340" width="170" height="36" rx="8" fill="#F9ED27" opacity="0.2"/>
+      <text x="355" y="23" font-family="'Inter', sans-serif" font-size="13" font-weight="700" fill="#F9ED27">30 CPD Credits</text>
+    </g>
+  </g>
+
+  <!-- Clove / Amana Crest -->
+  <g transform="translate(680, 310)">
+    <circle r="75" fill="#072818" stroke="url(#amanaGold)" stroke-width="4"/>
+    <path d="M-25,10 C-25,-25 0,-45 0,-45 C0,-45 25,-25 25,10 C15,30 -15,30 -25,10 Z" fill="#006837" stroke="#F9ED27" stroke-width="2"/>
+    <circle cx="0" cy="-5" r="7" fill="#F9ED27"/>
+    <text text-anchor="middle" y="45" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#32C5F1" letter-spacing="1">AMANA 100%</text>
+  </g>
+</svg>

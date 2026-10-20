@@ -1,0 +1,83 @@
+name: PBZ LMS - CD Pipeline (Deployment)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Target Deployment Environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+concurrency:
+  group: deployment-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via Webhook (Optional Fast Path)
+        if: ${{ secrets.DEPLOY_WEBHOOK_URL != '' }}
+        run: |
+          echo "Triggering deployment webhook..."
+          curl -X POST -s -S "${{ secrets.DEPLOY_WEBHOOK_URL }}"
+          echo "Deployment webhook triggered successfully."
+
+      - name: Deploy via SSH
+        if: ${{ secrets.SSH_HOST != '' && secrets.SSH_USER != '' }}
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            echo "==== Starting PBZ LMS Deployment ===="
+            cd ${{ secrets.DEPLOY_PATH || '/var/www/pbzlms' }}
+
+            # Put app into maintenance mode
+            php artisan down --retry=15 --render="errors::503" || true
+
+            # Pull latest changes from main branch
+            git pull origin main
+
+            # Install production PHP dependencies
+            composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+
+            # Run database migrations
+            php artisan migrate --force
+
+            # Clear and rebuild Laravel production caches
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Build and bundle frontend assets
+            if [ -f "package.json" ]; then
+              npm ci --production=false
+              npm run build
+            fi
+
+            # Ensure storage symlink exists
+            php artisan storage:link --ansi || true
+
+            # Restart queue workers to pick up fresh code
+            php artisan queue:restart || true
+
+            # Bring app out of maintenance mode
+            php artisan up
+
+            echo "==== PBZ LMS Deployment Successfully Completed! ===="
