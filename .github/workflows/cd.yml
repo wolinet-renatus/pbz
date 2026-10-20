@@ -22,19 +22,30 @@ jobs:
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Deployment Notice (Secrets Pending)
+        if: env.SSH_HOST == '' && env.DEPLOY_WEBHOOK_URL == ''
+        run: |
+          echo "::notice ::Deployment skipped: SSH_HOST or DEPLOY_WEBHOOK_URL secrets have not been configured yet in GitHub Repository Settings."
+          echo "Please refer to .github/DEPLOYMENT_GUIDE.md to add your deployment credentials."
+
       - name: Deploy via Webhook (Optional Fast Path)
-        if: ${{ secrets.DEPLOY_WEBHOOK_URL != '' }}
+        if: env.DEPLOY_WEBHOOK_URL != ''
         run: |
           echo "Triggering deployment webhook..."
-          curl -X POST -s -S "${{ secrets.DEPLOY_WEBHOOK_URL }}"
+          curl -X POST -s -S "$DEPLOY_WEBHOOK_URL"
           echo "Deployment webhook triggered successfully."
 
       - name: Deploy via SSH
-        if: ${{ secrets.SSH_HOST != '' && secrets.SSH_USER != '' }}
+        if: env.SSH_HOST != '' && env.SSH_USER != ''
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
