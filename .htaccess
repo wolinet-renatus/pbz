@@ -1,12 +1,18 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /pbzlms/
 
-    # Allow direct access to Documentation
-    RewriteCond %{REQUEST_URI} ^/pbzlms/Documentation [NC]
+    # Block access to hidden files (.env, .git, etc.)
+    RewriteRule ^\.(.*) - [F,L]
+
+    # Block direct access to storage logs and framework data
+    RewriteRule ^storage/logs/.* - [F,L]
+    RewriteRule ^storage/framework/.* - [F,L]
+
+    # Allow direct access to Documentation if accessed
+    RewriteCond %{REQUEST_URI} ^/Documentation [NC]
     RewriteRule ^ - [L]
 
-    RewriteRule ^$ public/ [L,R=302]
-    RewriteCond %{REQUEST_URI} !^/pbzlms/public/
-    RewriteRule ^(.*)$ public/$1 [L,R=302]
+    # Rewrite all root requests internally to the public directory
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
