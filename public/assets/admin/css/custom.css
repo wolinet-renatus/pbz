@@ -303,6 +303,29 @@ body.sidebar-floating .main-navbar {
     background-color: rgba(255, 255, 255, 0.04) !important;
 }
 
+.main-sidebar .sidebar-menu li.dropdown ul.dropdown-menu li.dropdown-sublabel {
+    padding: 8px 14px 3px !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.7px !important;
+    text-transform: uppercase !important;
+    color: #475569 !important;
+    pointer-events: none;
+}
+
+.main-sidebar .sidebar-menu li.dropdown ul.dropdown-menu li.dropdown-sublabel:not(:first-child) {
+    margin-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.main-sidebar .sidebar-menu li a.has-dropdown .sidebar-dropdown-badge {
+    margin-left: auto;
+    margin-right: 22px;
+    font-size: 10px;
+    padding: 2px 6px;
+    line-height: 1.2;
+}
+
 /* Custom dark scrollbar for sidebar */
 .main-sidebar #sidebar-wrapper::-webkit-scrollbar {
     width: 4px;

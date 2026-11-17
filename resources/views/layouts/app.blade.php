@@ -116,8 +116,6 @@
         @include('partials.footer')
     @endif
 
-    @include('cookie-consent::index')
-
     <!--<< All JS Plugins >>-->
     @if(active_theme() && request()->routeIs('home'))
         {!! theme_scripts() !!}

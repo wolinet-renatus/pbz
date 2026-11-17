@@ -1,13 +1,7 @@
 @extends('layouts.auth')
 
 @section('title', __('auth.sign_in'))
-@section('badge_text', 'Bank of Tanzania Certified Learning Academy')
-@section('hero_title', 'Grow your banking career with expert-led courses.')
-@section('hero_desc', 'Join banking professionals across Zanzibar & Tanzania. Video lessons, regulatory compliance, AML/CFT, Islamic banking (PBZ Ikhlas) — all in one sovereign portal.')
-@section('quote_text', 'Clear regulatory explanations, compliance assessments after every section, and an official PBZ certificate that accelerated my career.')
-@section('quote_name', 'Renatus Bernardo')
-@section('quote_role', 'Senior AML Compliance Officer · PBZ Bank')
-@section('quote_avatar', asset('assets/front/img/home-1/testimonial/client-01.png'))
+@section('simple_auth', true)
 
 @section('form_content')
     <div class="text-start">

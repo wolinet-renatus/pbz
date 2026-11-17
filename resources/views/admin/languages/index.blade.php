@@ -46,17 +46,33 @@
                             <th>Code</th>
                             <th>Native Name</th>
                             <th>Flag</th>
+                            <th>Course Catalog</th>
                             <th>Default</th>
                             <th class="text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($languages as $code => $lang)
+                            @php
+                                $courseLang = $courseLanguages->get(strtolower($code));
+                                $isCourseActive = $courseLang ? (bool) $courseLang->is_active : false;
+                            @endphp
                             <tr>
                                 <td><strong>{{ $lang['name'] }}</strong></td>
                                 <td><code>{{ $code }}</code></td>
                                 <td>{{ $lang['native'] }}</td>
                                 <td style="font-size: 1.5rem;">{{ $lang['flag'] }}</td>
+                                <td>
+                                    <form action="{{ route('admin.languages.toggle-course', ['locale' => $code]) }}"
+                                        method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn btn-sm {{ $isCourseActive ? 'btn-success' : 'btn-outline-secondary' }}"
+                                            title="Toggle availability in course forms">
+                                            {{ $isCourseActive ? 'Active in Courses' : 'Not in Courses' }}
+                                        </button>
+                                    </form>
+                                </td>
                                 <td>
                                     @if ($code === 'en')
                                         <span class="badge badge-success">System Default</span>
@@ -72,7 +88,7 @@
                                     @if ($code !== 'en')
                                         <form action="{{ route('admin.languages.destroy', ['locale' => $code]) }}"
                                             method="POST" class="d-inline"
-                                            onsubmit="return confirm('Are you sure you want to delete this language? This will delete the directory resources/lang/{{ $code }} and all its translation files permanently.');">
+                                            onsubmit="return confirm('Are you sure you want to delete this language? This will delete the directory resources/lang/{{ $code }} and remove it from course languages.');">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-outline-danger" type="submit" title="Delete Language">

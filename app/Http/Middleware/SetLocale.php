@@ -18,6 +18,7 @@ class SetLocale
         return \Illuminate\Support\Facades\Cache::rememberForever('active_system_locales', function () {
             $allLocales = [
                 'en' => ['name' => 'English', 'native' => 'English', 'flag' => '🇺🇸'],
+                'sw' => ['name' => 'Swahili', 'native' => 'Kiswahili', 'flag' => '🇹🇿'],
                 'bn' => ['name' => 'Bengali', 'native' => 'বাংলা',  'flag' => '🇧🇩'],
                 'es' => ['name' => 'Spanish', 'native' => 'Español', 'flag' => '🇪🇸'],
                 'hi' => ['name' => 'Hindi', 'native' => 'हिन्दी',   'flag' => '🇮🇳'],

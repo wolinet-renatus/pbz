@@ -198,18 +198,6 @@
                     <i class="fas fa-arrow-right"></i> Avg {{ round($analytics['overview']['average_rating'], 1) }}/5.0 score
                 </div>
             </a>
-
-            <!-- 7. BOT Regulatory Adherence (Submarine Navy / Cyan) -->
-            <a href="{{ route('admin.compliance.branch-matrix') }}" class="pbz-outcome-card text-decoration-none" style="background: #07172b; border: 1px solid rgba(56, 189, 248, 0.35);">
-                <div class="pbz-outcome-head">
-                    <span class="pbz-outcome-title" style="color: #38bdf8;">BOT COMPLIANCE</span>
-                    <span class="pbz-outcome-icon" style="color: #38bdf8;"><i class="fas fa-scale-balanced"></i></span>
-                </div>
-                <div class="pbz-outcome-val" style="font-size: 20px; color: #f8fafc;">100% AUDIT</div>
-                <div class="pbz-outcome-pill" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
-                    <i class="fas fa-building-shield"></i> Branch Oversight
-                </div>
-            </a>
         </div>
 
         <!-- Row 3: Department Readiness / Analytics Trend Chart & Overall Course Leaders -->
@@ -731,6 +719,29 @@
                 background-color: rgba(255, 255, 255, 0.04) !important;
             }
 
+            body .main-sidebar .sidebar-menu li.dropdown ul.dropdown-menu li.dropdown-sublabel {
+                padding: 8px 14px 3px !important;
+                font-size: 9px !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.7px !important;
+                text-transform: uppercase !important;
+                color: #475569 !important;
+                pointer-events: none;
+            }
+
+            body .main-sidebar .sidebar-menu li.dropdown ul.dropdown-menu li.dropdown-sublabel:not(:first-child) {
+                margin-top: 4px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            body .main-sidebar .sidebar-menu li a.has-dropdown .sidebar-dropdown-badge {
+                margin-left: auto;
+                margin-right: 22px;
+                font-size: 10px;
+                padding: 2px 6px;
+                line-height: 1.2;
+            }
+
             /* Navbar Dark Styling */
             .navbar-bg {
                 background-color: #071927 !important;
@@ -869,14 +880,14 @@
 
             .pbz-outcome-grid {
                 display: grid !important;
-                grid-template-columns: repeat(7, 1fr) !important;
+                grid-template-columns: repeat(6, 1fr) !important;
                 gap: 10px !important;
                 margin-bottom: 22px !important;
             }
 
             @media (max-width: 1400px) {
                 .pbz-outcome-grid {
-                    grid-template-columns: repeat(4, 1fr) !important;
+                    grid-template-columns: repeat(3, 1fr) !important;
                 }
             }
             @media (max-width: 992px) {

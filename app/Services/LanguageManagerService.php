@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Course;
+use App\Models\CourseLanguage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 
 /**
- * Service to manage language locales and translation files.
+ * Service to manage language locales, translation files, and course language availability.
  */
 class LanguageManagerService
 {
@@ -15,6 +17,7 @@ class LanguageManagerService
      */
     protected const PREDEFINED_LOCALES = [
         'en' => ['name' => 'English', 'native' => 'English', 'flag' => '🇺🇸'],
+        'sw' => ['name' => 'Swahili', 'native' => 'Kiswahili', 'flag' => '🇹🇿'],
         'bn' => ['name' => 'Bengali', 'native' => 'বাংলা',  'flag' => '🇧🇩'],
         'es' => ['name' => 'Spanish', 'native' => 'Español', 'flag' => '🇪🇸'],
         'hi' => ['name' => 'Hindi', 'native' => 'हिन्दी',   'flag' => '🇮🇳'],
@@ -185,6 +188,20 @@ class LanguageManagerService
             }
         }
 
+        // Sync into course_languages table so one unified language list serves both UI & courses
+        $meta = self::PREDEFINED_LOCALES[$code] ?? [
+            'name' => strtoupper($code),
+            'native' => strtoupper($code),
+        ];
+        CourseLanguage::updateOrCreate(
+            ['code' => $code],
+            [
+                'name' => $meta['name'],
+                'native_name' => $meta['native'],
+                'is_active' => true,
+            ]
+        );
+
         // Clear cache
         Cache::forget('active_system_locales');
 
@@ -192,7 +209,38 @@ class LanguageManagerService
     }
 
     /**
-     * Delete a language directory.
+     * Toggle whether a system language is active in the course catalog dropdown.
+     */
+    public function toggleCourseAvailability(string $code): bool
+    {
+        $code = strtolower($code);
+        $courseLang = CourseLanguage::where('code', $code)->first();
+
+        if ($courseLang) {
+            $courseLang->is_active = !$courseLang->is_active;
+            $courseLang->save();
+
+            return $courseLang->is_active;
+        }
+
+        $meta = self::PREDEFINED_LOCALES[$code] ?? [
+            'name' => strtoupper($code),
+            'native' => strtoupper($code),
+        ];
+
+        CourseLanguage::create([
+            'code' => $code,
+            'name' => $meta['name'],
+            'native_name' => $meta['native'],
+            'is_active' => true,
+            'display_order' => (int) CourseLanguage::max('display_order') + 1,
+        ]);
+
+        return true;
+    }
+
+    /**
+     * Delete a language directory and detach/remove its course language entry.
      */
     public function deleteLanguage(string $code): bool
     {
@@ -201,14 +249,26 @@ class LanguageManagerService
         }
 
         $dir = resource_path("lang/{$code}");
+        $deleted = false;
 
         if (File::isDirectory($dir)) {
             File::deleteDirectory($dir);
-            Cache::forget('active_system_locales');
-            return true;
+            $deleted = true;
         }
 
-        return false;
+        $courseLang = CourseLanguage::where('code', $code)->first();
+        if ($courseLang) {
+            Course::where('course_language_id', $courseLang->id)
+                ->update(['course_language_id' => null]);
+            $courseLang->delete();
+            $deleted = true;
+        }
+
+        if ($deleted) {
+            Cache::forget('active_system_locales');
+        }
+
+        return $deleted;
     }
 
     /**

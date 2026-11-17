@@ -3,18 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course;
-use App\Models\CourseTopic;
-use App\Models\Lesson;
-use App\Models\Quiz;
 use App\Models\Assignment;
+use App\Models\Course;
+use App\Models\CourseCategory;
+use App\Models\CourseLanguage;
+use App\Models\CourseTopic;
 use App\Models\Enrollment;
-use App\Models\Review;
+use App\Models\Lesson;
 use App\Models\Payment;
+use App\Models\Quiz;
+use App\Models\Review;
+use App\Models\User;
+use App\Services\FileUploadService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 /**
  * Course Controller
@@ -25,6 +32,9 @@ use Illuminate\Support\Str;
  */
 class CourseController extends Controller
 {
+    public function __construct(
+        private readonly FileUploadService $fileUploadService
+    ) {}
     /**
      * Display all courses
      *
@@ -69,6 +79,26 @@ class CourseController extends Controller
     }
 
     /**
+     * Show the form for creating a new course.
+     */
+    public function create()
+    {
+        return view('admin.courses.create', $this->courseFormData());
+    }
+
+    /**
+     * Store a newly created course in storage.
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $payload = $this->buildCoursePayload($request);
+        $course = Course::create($payload);
+
+        ToastMagic::success("Course '{$course->title}' created successfully. You can now add topics and lessons.");
+        return redirect()->route('admin.courses.edit', $course->id);
+    }
+
+    /**
      * Display pending courses for approval
      *
      * @return \Illuminate\Contracts\View\View
@@ -76,6 +106,164 @@ class CourseController extends Controller
     public function pending()
     {
         return redirect()->route('admin.courses.index', ['status' => 'pending']);
+    }
+
+    /**
+     * Show the form for editing the specified course and its curriculum.
+     */
+    public function edit($id)
+    {
+        $course = Course::with([
+            'instructor',
+            'topics' => fn ($q) => $q->orderBy('order'),
+            'topics.lessons' => fn ($q) => $q->orderBy('order'),
+            'topics.quizzes',
+            'topics.assignments',
+        ])->findOrFail($id);
+
+        return view('admin.courses.edit', array_merge(
+            ['course' => $course],
+            $this->courseFormData()
+        ));
+    }
+
+    /**
+     * Update the specified course in storage.
+     */
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $payload = $this->buildCoursePayload($request, $course);
+        $course->update($payload);
+
+        ToastMagic::success("Course '{$course->title}' updated successfully.");
+        return redirect()->route('admin.courses.edit', $course->id);
+    }
+
+    /**
+     * Restore an archived course back to draft or published.
+     */
+    public function restore($id): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $course->status = 'draft';
+        $course->deleted_date = null;
+        $course->save();
+
+        ToastMagic::success("Course '{$course->title}' has been restored to draft.");
+        return back();
+    }
+
+    /**
+     * Add a curriculum topic to a course.
+     */
+    public function storeTopic(Request $request, $id): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'order' => ['nullable', 'integer', 'min:0'],
+        ]);
+
+        $nextOrder = $validated['order'] ?? (($course->topics()->max('order') ?? -1) + 1);
+        $course->topics()->create([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'order' => (int) $nextOrder,
+        ]);
+
+        ToastMagic::success('Topic added to curriculum.');
+        return redirect()->route('admin.courses.edit', [$course->id, '#curriculum']);
+    }
+
+    /**
+     * Update a curriculum topic.
+     */
+    public function updateTopic(Request $request, $id, $topicId): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $topic = CourseTopic::where('course_id', $course->id)->findOrFail($topicId);
+
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'order' => ['nullable', 'integer', 'min:0'],
+        ]);
+
+        $topic->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'order' => (int) ($validated['order'] ?? $topic->order),
+        ]);
+
+        ToastMagic::success('Topic updated.');
+        return redirect()->route('admin.courses.edit', [$course->id, '#curriculum']);
+    }
+
+    /**
+     * Delete a curriculum topic and its child lessons.
+     */
+    public function destroyTopic($id, $topicId): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $topic = CourseTopic::with('lessons')->where('course_id', $course->id)->findOrFail($topicId);
+
+        DB::transaction(function () use ($topic) {
+            foreach ($topic->lessons as $lesson) {
+                $this->deleteLessonMediaAndRecord($lesson);
+            }
+            $topic->delete();
+        });
+
+        ToastMagic::success("Topic '{$topic->title}' deleted.");
+        return redirect()->route('admin.courses.edit', [$course->id, '#curriculum']);
+    }
+
+    /**
+     * Add a lesson to a course topic.
+     */
+    public function storeLesson(Request $request, $id, $topicId): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $topic = CourseTopic::where('course_id', $course->id)->findOrFail($topicId);
+
+        $payload = $this->buildLessonPayload($request, $topic);
+        $topic->lessons()->create($payload);
+
+        ToastMagic::success('Lesson added.');
+        return redirect()->route('admin.courses.edit', [$course->id, '#curriculum']);
+    }
+
+    /**
+     * Update a lesson in a course topic.
+     */
+    public function updateLesson(Request $request, $id, $topicId, $lessonId): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $topic = CourseTopic::where('course_id', $course->id)->findOrFail($topicId);
+        $lesson = Lesson::where('course_topic_id', $topic->id)->findOrFail($lessonId);
+
+        $payload = $this->buildLessonPayload($request, $topic, $lesson);
+        $lesson->update($payload);
+
+        ToastMagic::success('Lesson updated.');
+        return redirect()->route('admin.courses.edit', [$course->id, '#curriculum']);
+    }
+
+    /**
+     * Delete a lesson and its uploaded video if present.
+     */
+    public function destroyLesson($id, $topicId, $lessonId): RedirectResponse
+    {
+        $course = Course::findOrFail($id);
+        $topic = CourseTopic::where('course_id', $course->id)->findOrFail($topicId);
+        $lesson = Lesson::where('course_topic_id', $topic->id)->findOrFail($lessonId);
+
+        $this->deleteLessonMediaAndRecord($lesson);
+
+        ToastMagic::success("Lesson '{$lesson->title}' deleted.");
+        return redirect()->route('admin.courses.edit', [$course->id, '#curriculum']);
     }
 
     /**
@@ -357,6 +545,189 @@ class CourseController extends Controller
             ToastMagic::error("An error occurred while deleting the course: " . $e->getMessage());
             return back();
         }
+    }
+
+    /**
+     * Shared lookup options for create and edit course forms.
+     */
+    private function courseFormData(): array
+    {
+        return [
+            'instructors' => User::whereIn('role', ['instructor', 'admin'])
+                ->orderBy('name')
+                ->get(['id', 'name', 'email', 'role']),
+            'categories' => CourseCategory::where('is_active', true)
+                ->orderBy('display_order')
+                ->orderBy('name')
+                ->get(['id', 'name']),
+            'languages' => CourseLanguage::where('is_active', true)
+                ->orderBy('display_order')
+                ->orderBy('name')
+                ->get(['id', 'name']),
+        ];
+    }
+
+    /**
+     * Validate and build the attribute payload for creating or updating a course.
+     */
+    private function buildCoursePayload(Request $request, ?Course $existing = null): array
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'instructor_id' => ['required', 'exists:users,id'],
+            'course_category_id' => ['nullable', 'exists:course_categories,id'],
+            'course_language_id' => ['nullable', 'exists:course_languages,id'],
+            'difficulty' => ['required', Rule::in(['beginner', 'intermediate', 'advanced'])],
+            'visibility' => ['required', Rule::in(['public', 'private', 'draft'])],
+            'status' => ['required', Rule::in(['draft', 'pending', 'published', 'archived'])],
+            'pricing_model' => ['required', Rule::in(['free', 'paid'])],
+            'regular_price' => ['nullable', 'required_if:pricing_model,paid', 'numeric', 'min:0'],
+            'sale_price' => ['nullable', 'numeric', 'min:0'],
+            'max_students' => ['nullable', 'integer', 'min:1'],
+            'curriculum_type' => ['required', Rule::in(['conventional', 'islamic_amana', 'general_banking'])],
+            'compliance_category' => ['nullable', Rule::in(['bot_mandate', 'aml_cft', 'kyc', 'cyber_hygiene', 'operational_risk'])],
+            'validity_months' => ['nullable', 'integer', 'min:1', 'max:120'],
+            'estimated_minutes' => ['nullable', 'integer', 'min:1', 'max:10000'],
+            'schedule_date' => ['nullable', 'date'],
+            'tags' => ['nullable', 'string'],
+            'requirements' => ['nullable', 'string'],
+            'objectives' => ['nullable', 'string'],
+            'featured_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif,webp', 'max:5120'],
+            'intro_video' => ['nullable', 'file', 'mimes:mp4,avi,mov,webm', 'max:512000'],
+        ]);
+
+        $category = !empty($validated['course_category_id'])
+            ? CourseCategory::find($validated['course_category_id'])
+            : null;
+        $language = !empty($validated['course_language_id'])
+            ? CourseLanguage::find($validated['course_language_id'])
+            : null;
+
+        $featuredImagePath = $existing?->featured_image;
+        if ($request->boolean('remove_featured_image') && $featuredImagePath) {
+            Storage::disk('public')->delete($featuredImagePath);
+            $featuredImagePath = null;
+        }
+        if ($request->hasFile('featured_image')) {
+            if ($featuredImagePath) {
+                Storage::disk('public')->delete($featuredImagePath);
+            }
+            $featuredImagePath = $this->fileUploadService->uploadCourseImage($request->file('featured_image'));
+        }
+
+        $introVideoPath = $existing?->intro_video;
+        if ($request->boolean('remove_intro_video') && $introVideoPath) {
+            Storage::disk('public')->delete($introVideoPath);
+            $introVideoPath = null;
+        }
+        if ($request->hasFile('intro_video')) {
+            if ($introVideoPath) {
+                Storage::disk('public')->delete($introVideoPath);
+            }
+            $introVideoPath = $this->fileUploadService->uploadIntroVideo($request->file('intro_video'));
+        }
+
+        $isPublicCourse = $request->boolean('public_course');
+        $scheduleEnabled = $request->boolean('schedule_enabled');
+        $isPaid = $validated['pricing_model'] === 'paid';
+
+        return [
+            'instructor_id' => (int) $validated['instructor_id'],
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'featured_image' => $featuredImagePath,
+            'intro_video' => $introVideoPath,
+            'visibility' => $validated['visibility'],
+            'public_course' => $isPublicCourse,
+            'max_students' => $isPublicCourse ? null : ($validated['max_students'] ?? null),
+            'difficulty' => $validated['difficulty'],
+            'pricing_model' => $validated['pricing_model'],
+            'regular_price' => $isPaid ? ($validated['regular_price'] ?? 0) : 0,
+            'sale_price' => $isPaid ? ($validated['sale_price'] ?? null) : null,
+            'schedule_enabled' => $scheduleEnabled,
+            'schedule_date' => $scheduleEnabled ? ($validated['schedule_date'] ?? null) : null,
+            'course_category_id' => $category?->id,
+            'course_language_id' => $language?->id,
+            'category' => $category?->name ?? $existing?->category,
+            'language' => $language?->name ?? $existing?->language,
+            'tags' => $validated['tags'] ?? null,
+            'requirements' => $validated['requirements'] ?? null,
+            'objectives' => $validated['objectives'] ?? null,
+            'status' => $validated['status'],
+            'deleted_date' => $validated['status'] === 'archived' ? ($existing?->deleted_date ?? now()) : null,
+            'is_live_course' => $request->boolean('is_live_course'),
+            'curriculum_type' => $validated['curriculum_type'],
+            'shariah_board_certified' => $request->boolean('shariah_board_certified'),
+            'compliance_category' => $validated['compliance_category'] ?? null,
+            'is_mandatory' => $request->boolean('is_mandatory'),
+            'validity_months' => (int) ($validated['validity_months'] ?? 12),
+            'estimated_minutes' => (int) ($validated['estimated_minutes'] ?? 15),
+            'is_microlearning' => $request->boolean('is_microlearning'),
+        ];
+    }
+
+    /**
+     * Validate and build the attribute payload for creating or updating a lesson.
+     */
+    private function buildLessonPayload(Request $request, CourseTopic $topic, ?Lesson $existing = null): array
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'content_type' => ['required', Rule::in(['video', 'text'])],
+            'video_type' => ['nullable', Rule::in(['url', 'upload'])],
+            'video_url' => ['nullable', 'string', 'max:1000'],
+            'video_file' => ['nullable', 'file', 'mimes:mp4,avi,mov,webm', 'max:512000'],
+            'duration' => ['nullable', 'integer', 'min:0'],
+            'description' => ['nullable', 'string'],
+            'order' => ['nullable', 'integer', 'min:0'],
+        ]);
+
+        $videoType = $validated['content_type'] === 'video'
+            ? ($validated['video_type'] ?? 'url')
+            : null;
+        $videoUrl = null;
+        $videoPath = $existing?->video_path;
+
+        if ($videoType === 'url') {
+            $videoUrl = $validated['video_url'] ?? null;
+            if ($videoPath) {
+                Storage::disk('public')->delete($videoPath);
+                $videoPath = null;
+            }
+        } elseif ($videoType === 'upload' && $request->hasFile('video_file')) {
+            if ($videoPath) {
+                Storage::disk('public')->delete($videoPath);
+            }
+            $videoPath = $this->fileUploadService->uploadLessonVideo($request->file('video_file'));
+        } elseif ($validated['content_type'] === 'text' && $videoPath) {
+            Storage::disk('public')->delete($videoPath);
+            $videoPath = null;
+        }
+
+        return [
+            'title' => $validated['title'],
+            'content_type' => $validated['content_type'],
+            'description' => $validated['description'] ?? null,
+            'video_type' => $videoType,
+            'video_url' => $videoUrl,
+            'video_path' => $videoPath,
+            'duration' => (int) ($validated['duration'] ?? 0),
+            'is_preview' => $request->boolean('is_preview'),
+            'order' => (int) ($validated['order'] ?? ($existing?->order ?? (($topic->lessons()->max('order') ?? -1) + 1))),
+        ];
+    }
+
+    /**
+     * Delete lesson media, progress records, and the lesson row itself.
+     */
+    private function deleteLessonMediaAndRecord(Lesson $lesson): void
+    {
+        if ($lesson->video_path) {
+            Storage::disk('public')->delete($lesson->video_path);
+        }
+        $lesson->progress()->delete();
+        $lesson->delete();
     }
 }
 

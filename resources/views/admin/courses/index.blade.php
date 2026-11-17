@@ -102,13 +102,16 @@
                                 </select>
                             </form>
                         </div>
-                        <div class="col-md-3 text-right">
+                        <div class="col-md-3 text-right d-flex align-items-center justify-content-end gap-2 flex-wrap">
                             <span class="badge badge-info">Total: {{ $courses->total() }} courses</span>
                             @if ($pendingCount > 0)
                                 <a href="{{ route('admin.courses.index') }}?status=pending" class="badge badge-warning">
                                     Pending: {{ $pendingCount }}
                                 </a>
                             @endif
+                            <a href="{{ route('admin.courses.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i> Create Course
+                            </a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -231,7 +234,20 @@
                                                     class="btn btn-sm btn-info" title="View">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                @if ($course->status !== 'archived')
+                                                <a href="{{ route('admin.courses.edit', $course->id) }}"
+                                                    class="btn btn-sm btn-primary" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                @if ($course->status === 'archived')
+                                                    <form action="{{ route('admin.courses.restore', $course->id) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-success"
+                                                            title="Restore to Draft">
+                                                            <i class="fas fa-undo"></i>
+                                                        </button>
+                                                    </form>
+                                                @else
                                                     <form action="{{ route('admin.courses.destroy', $course->id) }}"
                                                         method="POST" class="d-inline"
                                                         onsubmit="return confirm('Are you sure you want to archive this course?');">

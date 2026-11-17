@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\BlogCommentController as AdminBlogCommentControll
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\CourseCategoryController;
-use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\FrontendSettingController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MenuController;
@@ -86,6 +85,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/settings/languages', [LanguageController::class, 'index'])->name('languages.index');
     Route::get('/settings/languages/create', [LanguageController::class, 'create'])->name('languages.create');
     Route::post('/settings/languages', [LanguageController::class, 'store'])->name('languages.store');
+    Route::post('/settings/languages/{locale}/toggle-course', [LanguageController::class, 'toggleCourse'])->name('languages.toggle-course');
     Route::delete('/settings/languages/{locale}', [LanguageController::class, 'destroy'])->name('languages.destroy');
     Route::get('/settings/languages/{locale}/translations', [LanguageController::class, 'editTranslations'])->name('languages.translations.edit');
     Route::post('/settings/languages/{locale}/translations', [LanguageController::class, 'updateTranslations'])->name('languages.translations.update');
@@ -202,13 +202,26 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // Course management
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
     Route::get('/courses/pending', [CourseController::class, 'pending'])->name('courses.pending');
     Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
+    Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
+    Route::post('/courses/{id}/restore', [CourseController::class, 'restore'])->name('courses.restore');
     Route::post('/courses/{id}/approve', [CourseController::class, 'approve'])->name('courses.approve');
     Route::post('/courses/{id}/reject', [CourseController::class, 'reject'])->name('courses.reject');
     Route::post('/courses/{id}/update-status', [CourseController::class, 'updateStatus'])->name('courses.update-status');
     Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
     Route::delete('/courses/{id}/full-delete', [CourseController::class, 'fullDelete'])->name('courses.full-delete');
+
+    // Course curriculum (topics & lessons) management
+    Route::post('/courses/{id}/topics', [CourseController::class, 'storeTopic'])->name('courses.topics.store');
+    Route::put('/courses/{id}/topics/{topicId}', [CourseController::class, 'updateTopic'])->name('courses.topics.update');
+    Route::delete('/courses/{id}/topics/{topicId}', [CourseController::class, 'destroyTopic'])->name('courses.topics.destroy');
+    Route::post('/courses/{id}/topics/{topicId}/lessons', [CourseController::class, 'storeLesson'])->name('courses.lessons.store');
+    Route::put('/courses/{id}/topics/{topicId}/lessons/{lessonId}', [CourseController::class, 'updateLesson'])->name('courses.lessons.update');
+    Route::delete('/courses/{id}/topics/{topicId}/lessons/{lessonId}', [CourseController::class, 'destroyLesson'])->name('courses.lessons.destroy');
 
     // Bundle management
     Route::resource('bundles', BundleController::class)->except(['show']);
@@ -216,7 +229,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/bundles/{bundle}/reject', [BundleController::class, 'reject'])->name('bundles.reject');
 
     Route::resource('course-categories', CourseCategoryController::class);
-    Route::resource('course-languages', CourseLanguageController::class);
+    Route::get('/course-languages/{any?}', fn () => redirect()->route('admin.languages.index'))
+        ->where('any', '.*')
+        ->name('course-languages.index');
     Route::resource('blog-categories', BlogCategoryController::class);
 
     // Frontend Manager
@@ -279,19 +294,5 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('subscriptions', [UserSubscriptionController::class, 'index'])->name('subscriptions.index');
     Route::post('subscriptions/assign', [UserSubscriptionController::class, 'assign'])->name('subscriptions.assign');
     Route::post('subscriptions/approve-offline/{paymentId}', [UserSubscriptionController::class, 'approveOffline'])->name('subscriptions.approve-offline');
-
-    // System Updater
-    Route::get('/updater', [\App\Http\Controllers\Admin\UpdaterController::class, 'index'])->name('updater.index');
-    Route::post('/updater/run', [\App\Http\Controllers\Admin\UpdaterController::class, 'update'])->name('updater.update');
-
-    // PBZ Regulatory Compliance & BOT Audit Matrix (Full CUD Operations)
-    Route::get('/compliance/branch-matrix', [\App\Http\Controllers\Student\ComplianceController::class, 'branchMatrix'])->name('compliance.branch-matrix');
-    Route::get('/compliance', [\App\Http\Controllers\Student\ComplianceController::class, 'index'])->name('compliance.index');
-    Route::post('/compliance/assign-mandate', [\App\Http\Controllers\Student\ComplianceController::class, 'assignMandate'])->name('compliance.assign-mandate');
-    Route::post('/compliance/extend-deadline/{enrollmentId}', [\App\Http\Controllers\Student\ComplianceController::class, 'extendDeadline'])->name('compliance.extend-deadline');
-    Route::post('/compliance/verify/{enrollmentId}', [\App\Http\Controllers\Student\ComplianceController::class, 'verifyCompliance'])->name('compliance.verify');
-    Route::delete('/compliance/revoke/{enrollmentId}', [\App\Http\Controllers\Student\ComplianceController::class, 'revokeMandate'])->name('compliance.revoke');
-    Route::post('/compliance/resolve-escalation/{enrollmentId}', [\App\Http\Controllers\Student\ComplianceController::class, 'resolveEscalation'])->name('compliance.resolve-escalation');
-    Route::post('/compliance/escalate/{enrollmentId}', [\App\Http\Controllers\Student\ComplianceController::class, 'escalate'])->name('compliance.escalate');
 });
 

@@ -1,7 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Route all traffic to public subfolder
-    RewriteCond %{REQUEST_URI} !^/public/
+    # Block access to hidden files (.env, .git, etc.)
+    RewriteRule ^\.(.*) - [F,L]
+
+    # Block direct access to storage logs and framework data
+    RewriteRule ^storage/logs/.* - [F,L]
+    RewriteRule ^storage/framework/.* - [F,L]
+
+    # Route all traffic to public subfolder (root domain or subdirectory)
+    RewriteCond %{REQUEST_URI} !/public(/|$)
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>

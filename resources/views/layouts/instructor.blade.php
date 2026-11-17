@@ -51,8 +51,6 @@
         @yield('content')
     </div>
 
-    @include('cookie-consent::index')
-
     <!--<< All JS Plugins >>-->
     <script src="{{ asset('assets/front/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/front/js/viewport.jquery.js') }}"></script>

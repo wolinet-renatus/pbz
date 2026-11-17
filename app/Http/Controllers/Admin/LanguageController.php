@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Requests\StoreTranslationKeyRequest;
+use App\Models\CourseLanguage;
 use App\Services\LanguageManagerService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\RedirectResponse;
@@ -25,15 +26,29 @@ class LanguageController extends Controller
     }
 
     /**
-     * Display all system languages.
+     * Display all system & course languages in one unified view.
      */
     public function index(): View
     {
         $languages = $this->languageService->getSupportedLocales();
+        $courseLanguages = CourseLanguage::all()->keyBy(fn ($item) => strtolower($item->code));
 
         return view('admin.languages.index', [
             'languages' => $languages,
+            'courseLanguages' => $courseLanguages,
         ]);
+    }
+
+    /**
+     * Toggle course-catalog availability for a language locale.
+     */
+    public function toggleCourse(string $locale): RedirectResponse
+    {
+        $isActive = $this->languageService->toggleCourseAvailability($locale);
+        $state = $isActive ? 'enabled' : 'disabled';
+        ToastMagic::success("Course catalog availability for '{$locale}' {$state}.");
+
+        return redirect()->route('admin.languages.index');
     }
 
     /**

@@ -648,6 +648,60 @@
             padding-top: 1.5rem;
         }
 
+        /* -------------------------------------------
+           CLEAN SIMPLE AUTH MODE (LOGIN)
+        ------------------------------------------- */
+        .auth-form-panel.is-simple {
+            flex: 1 1 100%;
+            background: linear-gradient(160deg, #f8fafc 0%, #f1f5f9 65%, #ecfdf5 100%);
+            padding: 2rem 1.25rem;
+            align-items: center;
+        }
+
+        .auth-form-panel.is-simple .auth-topbar {
+            max-width: 480px;
+            margin: 0 auto 1.25rem auto;
+        }
+
+        .auth-form-panel.is-simple .auth-form-container {
+            max-width: 480px;
+            background: #ffffff;
+            border: 1px solid var(--pbz-border);
+            border-radius: 18px;
+            padding: 2.1rem 2rem;
+            box-shadow: 0 12px 32px rgba(0, 43, 36, 0.06);
+        }
+
+        .auth-simple-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-simple-brand img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .auth-simple-brand-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--pbz-deep-navy);
+            line-height: 1.1;
+        }
+
+        .auth-simple-brand-sub {
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--pbz-text-muted);
+        }
+
         @media (max-width: 991.98px) {
             .auth-split-wrapper {
                 flex-direction: column;
@@ -662,6 +716,9 @@
                 flex: 1 1 auto;
                 padding: 2rem 1.5rem;
             }
+            .auth-form-panel.is-simple .auth-form-container {
+                padding: 1.65rem 1.35rem;
+            }
             .auth-hero-title {
                 font-size: 1.8rem;
             }
@@ -675,6 +732,7 @@
 <body>
 
 <div class="auth-split-wrapper">
+    @unless (View::hasSection('simple_auth'))
     <!-- LEFT COLUMN: BRANDING & HIGHLIGHTS -->
     <div class="auth-brand-panel">
         <div>
@@ -751,9 +809,10 @@
             </div>
         </div>
     </div>
+    @endunless
 
     <!-- RIGHT COLUMN: AUTHENTICATION FORM -->
-    <div class="auth-form-panel">
+    <div class="auth-form-panel @hasSection('simple_auth') is-simple @endif">
         <!-- Topbar navigation & language selector -->
         <div class="auth-topbar">
             <a href="{{ route('home') }}" class="back-to-site-link">
@@ -803,6 +862,15 @@
 
         <!-- Centered Form Content -->
         <div class="auth-form-container">
+            @hasSection('simple_auth')
+                <a href="{{ route('home') }}" class="auth-simple-brand">
+                    <img src="{{ asset('assets/front/img/logo/pbz-icon.png') }}" alt="PBZ Logo" onerror="this.src='{{ asset('assets/front/img/logo/pbz-logo.png') }}'">
+                    <div class="d-flex flex-column text-start">
+                        <span class="auth-simple-brand-title">PBZ LMS</span>
+                        <span class="auth-simple-brand-sub">People's Bank of Zanzibar</span>
+                    </div>
+                </a>
+            @endif
             @yield('form_content')
         </div>
 

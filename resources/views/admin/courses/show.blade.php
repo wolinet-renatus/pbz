@@ -16,6 +16,9 @@
                 <div class="card-header">
                     <h4>Course Details</h4>
                     <div class="card-header-action">
+                        <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-icon btn-primary mr-1">
+                            <i class="fas fa-edit"></i> Edit Course
+                        </a>
                         <a href="{{ route('admin.courses.index') }}" class="btn btn-icon btn-secondary">
                             <i class="fas fa-arrow-left"></i> Back to Courses
                         </a>
